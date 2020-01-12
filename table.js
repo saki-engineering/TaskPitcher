@@ -1,10 +1,10 @@
 $(function (){
 
     $("#btn-input").click(function() {
-        var name = $("#form-input").val();
-        var date = new Date();
+        var m_name = $("#form-input").val();
+        var today = new Date();
 
-        var tag = "<tr><td>" + name + "</td><td>" + date + "</td></tr>";
+        var tag = "<tr><td>" + m_name + "</td><td>" + today + "</td></tr>";
         $("tbody").append(tag);
 
         $("#form-input").val("");
