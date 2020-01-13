@@ -1,13 +1,11 @@
 $(function (){
-    //scriptをかく
-    /*例
-    $("p").click(function() {
-        // cssで文字色を赤に変更
-        $("p").css("color","red");
-    });
-    */
+    // IPC通信を行うために、レンダラープロセス側では ipcRenderer というモジュールを require する
+    const { ipcRenderer } = require("electron");
 
     $("#btn-search").click(function() {
+        // "hello" という文字列と123という整数を送信
+        ipcRenderer.send("hoge-event", "hello" , 123); 
+        
         var btn_act = '<input type="button" value="accept" id="btn-accept">'
         $("body").append(btn_act);
         var btn_rjc = '<input type="button" value="reject" id="btn-reject">'
