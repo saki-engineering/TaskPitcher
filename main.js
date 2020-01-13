@@ -45,7 +45,6 @@ app.on('ready', function(){
 // メインプロセス側では ipcMain モジュール
 const { ipcMain } = require("electron");
 
-ipcMain.on("hoge-event", (event, args) => {
-  // args[0] => "hello", args[1] => 123 が入っている
-  console.log("hoge-event!:", args); 
+ipcMain.on("test", (event, args) => {
+  console.log("test:", args); 
 });
