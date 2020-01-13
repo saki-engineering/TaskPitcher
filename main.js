@@ -12,14 +12,12 @@ const BrowserWindow = electron.BrowserWindow;
 // メインウィンドウはGCされないようにグローバル宣言
 let mainWindow;
 
-/*
 //NeDBの設定
 var Datastore = require('nedb');
 var db = new Datastore({ 
     filename: 'data/member.db',
     autoload: true
 });
-*/
 
 // 全てのウィンドウが閉じたら終了
 app.on('window-all-closed', function(){

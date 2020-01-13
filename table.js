@@ -8,6 +8,14 @@ $(function (){
         autoload: true
     });
 
+    db.find({}, function(err, docs){
+        var data_length = docs.length;
+        for(var i=0;i<data_length;i++){
+            var tag = "<tr><td>" + docs[i].name + "</td><td>" + docs[i].date + "</td></tr>";
+            $("tbody").append(tag);
+        }
+    });
+
     $("#btn-input").click(function() {
         // "hello" という文字列と123という整数を送信
         ipcRenderer.send("test", 1,2);
