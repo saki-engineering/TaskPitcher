@@ -9,9 +9,12 @@ $(function (){
     });
 
     db.find({}, function(err, docs){
-        var table = new Tabulator("#example-table", {
+        var table = new Tabulator("#result-table", {
             data:docs,
-            autoColumns:true,
+            columns:[
+                {title:"Name", field:"name", },
+                {title:"Last-date", field:"date", },
+            ],
         });
     });
 
