@@ -12,7 +12,7 @@ $(function (){
         var table = new Tabulator("#result-table", {
             data:docs,
             columns:[
-                {title:"Name", field:"name", },
+                {title:"Name", field:"name", editor:"input",},
                 {title:"Last-date", field:"date", },
             ],
         });
