@@ -14,6 +14,10 @@ $(function (){
             var tag = "<tr><td>" + docs[i].name + "</td><td>" + docs[i].date + "</td></tr>";
             $("tbody").append(tag);
         }
+        //ipcRenderer.send("test", docs); console.logの代わり
+        var table = new Tabulator("#result_list", {
+            autoColumns:true,
+        });
     });
 
     $("#btn-input").click(function() {
