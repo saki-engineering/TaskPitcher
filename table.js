@@ -43,7 +43,7 @@ $(function (){
 
     $("#btn-input").click(function() {
         // "hello" という文字列と123という整数を送信
-        ipcRenderer.send("test", 1,2);
+        //ipcRenderer.send("test", 1,2);
 
         var m_name = $("#form-input").val();
         var today = new Date();
@@ -55,6 +55,7 @@ $(function (){
         db.insert(doc);
 
         $("#form-input").val("");
+        location.reload();
     });
 
 });
