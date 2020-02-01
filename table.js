@@ -24,6 +24,7 @@ $(function (){
             });
 
             function successFunc(){
+                db.update({name:cellValue}, {$set: {name: editor.value}});
                 success(editor.value);
             }
             editor.addEventListener("blur", successFunc);
