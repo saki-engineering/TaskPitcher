@@ -9,10 +9,32 @@ $(function (){
     });
 
     db.find({}, function(err, docs){
+        var nameEditor = function(cell, onRendered, success, cancel){
+            //create and style input
+            var cellValue = cell.getValue();
+            editor = document.createElement("input");
+            editor.style.padding = "4px";
+            editor.style.width = "100%";
+            editor.style.boxSizing = "border-box";
+            editor.value = cellValue;
+
+            onRendered(function(){
+                editor.focus();
+                editor.style.height = "100%";
+            });
+
+            function successFunc(){
+                success(editor.value);
+            }
+            editor.addEventListener("blur", successFunc);
+        
+            return editor;
+        };
+
         var table = new Tabulator("#result-table", {
             data:docs,
             columns:[
-                {title:"Name", field:"name", editor:"input",},
+                {title:"Name", field:"name", editor:nameEditor,},
                 {title:"Last-date", field:"date", },
             ],
         });
