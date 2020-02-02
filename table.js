@@ -40,7 +40,9 @@ $(function (){
             data:docs,
             columns:[
                 {title:"Name", field:"name", editor:nameEditor,},
+                {title:"Period", field:"period", },
                 {title:"Last-date", field:"date", },
+                {title:"Remarks", field:"remarks", },
             ],
         });
     });
@@ -49,16 +51,22 @@ $(function (){
         // "hello" という文字列と123という整数を送信
         //ipcRenderer.send("test", 1,2);
 
-        var m_name = $("#form-input").val();
+        var m_name = $("#form-name").val();
         var today = moment().format('YYYY-MM-DD ddd');
+        var m_period = $("#form-period").val();
+        var m_remarks = $("#form-remarks").val();
 
         var doc = {
             name: m_name,
-            date: today
+            date: today,
+            period: m_period,
+            remarks: m_remarks
         };
         db.insert(doc);
 
-        $("#form-input").val("");
+        $("#form-name").val("");
+        $("#form-period").val("");
+        $("#form-remarks").val("");
         location.reload();
     });
 
