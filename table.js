@@ -188,9 +188,6 @@ $(function (){
             table.clearFilter();
         });
 
-        $("#testbtn").click(function() {
-            ipcRenderer.send("test", table.getSelectedData());
-        });
     });
 
     $("#btn-input").click(function() {

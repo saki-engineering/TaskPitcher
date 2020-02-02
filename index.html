@@ -2,6 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link href="bootstrap.css" rel="stylesheet">
+  <script src="bootstrap.js"></script>
   <script src="jquery-2.1.4.min.js"></script>
   <script src="jquery_after.js"></script>
   <script src="index.js"></script>
@@ -10,8 +12,8 @@
 
 <body>
   <h1>TaskPitcher</h1>
-  <a href= "table.html" >データ</a>
-  <input type="button" value="検索" id="btn-search">
+  <input type="button" value="検索" id="btn-search"  class="btn btn-dark">
+  <input type="button" value="データ" onclick="location.href='./table.html'" class="btn btn-link">
 </body>
 
 </html>

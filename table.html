@@ -2,7 +2,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link href="node_modules/tabulator-tables/dist/css/tabulator_site.css" rel="stylesheet">
+  <link href="bootstrap.css" rel="stylesheet">
+  <link href="node_modules/tabulator-tables/dist/css/bootstrap/tabulator_bootstrap4.css" rel="stylesheet">
+  <script src="bootstrap.js"></script>
   <script type="text/javascript" src="node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
   <script src="jquery-2.1.4.min.js"></script>
   <script src="jquery_after.js"></script>
@@ -12,39 +14,63 @@
 
 <body>
   <h1>TaskPitcher</h1>
-  <a href= "index.html" >戻る</a>
+  <input type="button" value="トップに戻る" onclick="location.href='./index.html'" class="btn btn-link">
 
-  <label for="form-name">名前</label>
-  <input type="text" name="member" id="form-name">
-  <label for="form-period">期</label>
-  <input type="number" name="period" id="form-period">
-  <label for="form-remarks">備考</label>
-  <textarea rows="3" cols="30" id="form-remarks"></textarea>
-  <input type="button" value="入力" id="btn-input">
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="form-name">名前</label>
+        <input type="text" name="member" id="form-name" class="form-control">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="form-period">期</label>
+        <input type="number" name="period" id="form-period" class="form-control">
+      </div>
+    </div>
+    <div class="form-group col-md-10">
+      <label for="form-remarks">備考</label>
+      <textarea rows="3" cols="30" id="form-remarks" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="button" value="入力" id="btn-input" class="btn btn-dark">
+    </div>
+  </form>
 
-  <input type="button" value="テスト" id="testbtn">
+  <div>
+    <input type="button" value="Delete Selected Datas" id="del-rows" class="btn btn-dark">
+  </div>
 
-  <input type="button" value="Delete Selected Datas" id="del-rows">
+  <form>
+    <div class="form-row">
+      <div class="form-group col-3">
+        <select id="filter-field" class="form-control">
+        <option value=""></option>
+        <option value="name">Name</option>
+        <option value="period">Period</option>
+        <option value="date">Last-date</option>
+        </select>
+      </div>
+      <div class="form-group col-1">
+        <select id="filter-type" class="form-control">
+        <option value="=">=</option>
+        <option value="<"><</option>
+        <option value="<="><=</option>
+        <option value=">">></option>
+        <option value=">=">>=</option>
+        <option value="!=">!=</option>
+        <option value="like">like</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <input type="text" id="filter-value" class="form-control">
+      </div>
+      <div class="form-group col">
+        <input type="button" value="Clear Filter" id="filter-clear" class="btn btn-dark">
+      </div>
+    </div>
+  </form>
 
-  <select id="filter-field">
-  <option value=""></option>
-  <option value="name">Name</option>
-  <option value="period">Period</option>
-  <option value="date">Last-date</option>
-  </select>
-  <select id="filter-type">
-  <option value="=">=</option>
-  <option value="<"><</option>
-  <option value="<="><=</option>
-  <option value=">">></option>
-  <option value=">=">>=</option>
-  <option value="!=">!=</option>
-  <option value="like">like</option>
-  </select>
-  <input type="text" id="filter-value">
-  <input type="button" value="Clear Filter" id="filter-clear">
-
-  <div id="result-table"></div>
+  <div id="result-table" class="thead-dark"></div>
 
 </body>
 
