@@ -12,6 +12,7 @@
   "dependencies": {
     "moment": "^2.24.0",
     "nedb": "^1.8.0",
+    "sweetalert2": "^9.7.1",
     "tabulator-tables": "^4.5.3"
   }
 }
