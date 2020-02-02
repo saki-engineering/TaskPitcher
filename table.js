@@ -37,6 +37,37 @@ $(function (){
             return editor;
         };
 
+        var periodEditor = function(cell, onRendered, success, cancel){
+            //create and style input
+            var cellValue = cell.getValue();
+            editor = document.createElement("input");
+            editor.style.padding = "4px";
+            editor.style.width = "100%";
+            editor.style.boxSizing = "border-box";
+            editor.value = cellValue;
+
+            onRendered(function(){
+                editor.focus();
+                editor.style.height = "100%";
+            });
+
+            function successFunc(){
+                var peri = Number(editor.value);
+                if(peri>0　&& Number.isInteger(peri)){
+                    db.update({_id:cell.getData()._id}, {$set: {period: editor.value}});
+                    success(editor.value);
+                }
+                else{
+                    alert("不正な数字です");
+                    success(cellValue);
+                }
+            }
+
+            editor.addEventListener("blur",successFunc);
+        
+            return editor;
+        };
+
         var dateEditor = function(cell, onRendered, success, cancel){
             //create and style input
             var cellValue = cell.getValue();
@@ -52,9 +83,9 @@ $(function (){
             });
 
             function successFunc(){
-                ipcRenderer.send("test", moment(editor.value).isValid());
+                //ipcRenderer.send("test", moment(editor.value).isValid());
                 if(moment(editor.value).isValid()){
-                    db.update({_id:cell.getData()._id}, {$set: {date: editor.value}});
+                    db.update({_id:cell.getData()._id}, {$set: {date: moment(editor.value).format('YYYY-MM-DD')}});
                     success(moment(editor.value).format('YYYY-MM-DD'));
                 }
                 else{
@@ -96,7 +127,7 @@ $(function (){
             data:docs,
             columns:[
                 {title:"Name", field:"name", editor:nameEditor,},
-                {title:"Period", field:"period", },
+                {title:"Period", field:"period", editor:periodEditor,},
                 {title:"Last-date", field:"date", editor:dateEditor,},
                 {title:"Remarks", field:"remarks", editor:remarksEditor},
             ],
