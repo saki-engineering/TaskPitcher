@@ -160,7 +160,7 @@ $(function (){
                 {title:"Period", field:"period", editor:periodEditor,},
                 {title:"Last-date", field:"date", editor:dateEditor,},
                 {title:"Remarks", field:"remarks", editor:remarksEditor,},
-                {title:"Active", field:"active", formatter:"tickCross", editor:activeEditor,},
+                {title:"Active", field:"active", formatter:"tickCross", editor:activeEditor,headerFilter:"tickCross", headerFilterParams:{"tristate":true},headerFilterEmptyCheck:function(value){return value === null}},
             ],
         });
 
