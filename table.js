@@ -28,7 +28,32 @@ $(function (){
             });
 
             function successFunc(){
-                db.update({name:cellValue}, {$set: {name: editor.value}});
+                //var field = cell.getField();
+                db.update({_id:cell.getData()._id}, {$set: {name: editor.value}});
+                success(editor.value);
+            }
+            editor.addEventListener("blur", successFunc);
+        
+            return editor;
+        };
+        
+        var remarksEditor = function(cell, onRendered, success, cancel){
+            //create and style input
+            var cellValue = cell.getValue();
+            editor = document.createElement("input");
+            editor.style.padding = "4px";
+            editor.style.width = "100%";
+            editor.style.boxSizing = "border-box";
+            editor.value = cellValue;
+
+            onRendered(function(){
+                editor.focus();
+                editor.style.height = "100%";
+            });
+
+            function successFunc(){
+                //var field = cell.getField();
+                db.update({_id:cell.getData()._id}, {$set: {remarks: editor.value}});
                 success(editor.value);
             }
             editor.addEventListener("blur", successFunc);
@@ -42,7 +67,7 @@ $(function (){
                 {title:"Name", field:"name", editor:nameEditor,},
                 {title:"Period", field:"period", },
                 {title:"Last-date", field:"date", },
-                {title:"Remarks", field:"remarks", },
+                {title:"Remarks", field:"remarks", editor:remarksEditor},
             ],
         });
     });

@@ -1,4 +1,4 @@
-{"name":"test","date":"2020-02-02 Sun","period":"3","_id":"HZKCN9yCJPkJKtTJ"}
-{"name":"test3","date":"2020-02-02 Sun","period":"5","remarks":"春日部","_id":"Npe4SGMDdnDJ9Wt6"}
+{"name":"test","date":"2020-02-02 Sun","period":"3","_id":"HZKCN9yCJPkJKtTJ","field":"test5","remarks":"春日部"}
+{"name":"test3","date":"2020-02-02 Sun","period":"5","remarks":"横浜","_id":"Npe4SGMDdnDJ9Wt6"}
 {"name":"test2","date":"2020-02-02 Sun","_id":"NsWR3CFDmJlCnaNG"}
 {"name":"test4","date":"2020-02-02 Sun","period":"7","remarks":"大宮","_id":"mliIAYGIvnEC9Do1"}
