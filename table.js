@@ -13,6 +13,7 @@ $(function (){
     var Tabulator = require('tabulator-tables');
 
     db.find({}, function(err, docs){
+        //editorの設定
         var nameEditor = function(cell, onRendered, success, cancel){
             //create and style input
             var cellValue = cell.getValue();
@@ -123,6 +124,7 @@ $(function (){
             return editor;
         };
 
+        //表を表示
         var table = new Tabulator("#result-table", {
             data:docs,
             columns:[
@@ -136,6 +138,7 @@ $(function (){
             ],
         });
 
+        //データ削除ボタンの設定
         $("#del-rows").click(function(){
             if(confirm("本当に選択したデータを削除しますか？")){
                 var selected_data = table.getSelectedData();
@@ -144,6 +147,19 @@ $(function (){
                 }
                 location.reload();
             }
+        });
+
+        //フィルターの設置
+        function updateFilter(){
+            table.setFilter($("#filter-field").val(), $("#filter-type").val(), $("#filter-value").val());
+        }
+        $("#filter-field, #filter-type").change(updateFilter);
+        $("#filter-value").keyup(updateFilter);
+        $("#filter-clear").click(function(){
+            $("#filter-field").val("");
+            $("#filter-type").val("=");
+            $("#filter-value").val("");
+            table.clearFilter();
         });
 
         $("#testbtn").click(function() {

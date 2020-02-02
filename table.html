@@ -23,7 +23,26 @@
   <input type="button" value="入力" id="btn-input">
 
   <input type="button" value="テスト" id="testbtn">
+
   <input type="button" value="Delete Selected Datas" id="del-rows">
+
+  <select id="filter-field">
+  <option value=""></option>
+  <option value="name">Name</option>
+  <option value="period">Period</option>
+  <option value="date">Last-date</option>
+  </select>
+  <select id="filter-type">
+  <option value="=">=</option>
+  <option value="<"><</option>
+  <option value="<="><=</option>
+  <option value=">">></option>
+  <option value=">=">>=</option>
+  <option value="!=">!=</option>
+  <option value="like">like</option>
+  </select>
+  <input type="text" id="filter-value">
+  <input type="button" value="Clear Filter" id="filter-clear">
 
   <div id="result-table"></div>
 
