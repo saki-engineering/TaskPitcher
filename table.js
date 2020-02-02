@@ -36,6 +36,37 @@ $(function (){
         
             return editor;
         };
+
+        var dateEditor = function(cell, onRendered, success, cancel){
+            //create and style input
+            var cellValue = cell.getValue();
+            editor = document.createElement("input");
+            editor.style.padding = "4px";
+            editor.style.width = "100%";
+            editor.style.boxSizing = "border-box";
+            editor.value = cellValue;
+
+            onRendered(function(){
+                editor.focus();
+                editor.style.height = "100%";
+            });
+
+            function successFunc(){
+                ipcRenderer.send("test", moment(editor.value).isValid());
+                if(moment(editor.value).isValid()){
+                    db.update({_id:cell.getData()._id}, {$set: {date: editor.value}});
+                    success(moment(editor.value).format('YYYY-MM-DD'));
+                }
+                else{
+                    alert("不正な日付です");
+                    success(cellValue);
+                }
+            }
+
+            editor.addEventListener("blur",successFunc);
+        
+            return editor;
+        };
         
         var remarksEditor = function(cell, onRendered, success, cancel){
             //create and style input
@@ -66,7 +97,7 @@ $(function (){
             columns:[
                 {title:"Name", field:"name", editor:nameEditor,},
                 {title:"Period", field:"period", },
-                {title:"Last-date", field:"date", },
+                {title:"Last-date", field:"date", editor:dateEditor,},
                 {title:"Remarks", field:"remarks", editor:remarksEditor},
             ],
         });
@@ -77,7 +108,7 @@ $(function (){
         //ipcRenderer.send("test", 1,2);
 
         var m_name = $("#form-name").val();
-        var today = moment().format('YYYY-MM-DD ddd');
+        var today = moment().format('YYYY-MM-DD');
         var m_period = $("#form-period").val();
         var m_remarks = $("#form-remarks").val();
 
