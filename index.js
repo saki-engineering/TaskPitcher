@@ -11,35 +11,34 @@ $(function (){
 
     const moment = require('moment')
 
+    //候補者をランダムに表示→accpet処理s
     $("#btn-search").click(function() {
         // "hello" という文字列と123という整数を送信
         //ipcRenderer.send("test", 1); 
-        
+
+        function select_conf(c_name,c_period,c_date){
+            var dialog = c_period + "期" + c_name + "さん(最終割り振り: " + c_date + "が選ばれました。\nこの人に割り振りますか？";
+            if (confirm(dialog)) {
+                db.update({name:c_name, date:c_date, period:c_period}, {$set: {date: moment().format('YYYY-MM-DD')}});
+                alert("処理が終わりました");
+            }
+        }
+
         db.find({date:{$lte: moment().subtract(1,'M').format('YYYY-MM-DD')}}, function(err, docs){
             if(docs.length>0){
                 var random = Math.floor( Math.random() * docs.length );
-                $("#rlt-name").html(docs[random].name);
-                $("#rlt-period").html(docs[random].period);
-                $("#rlt-date").html(docs[random].date);
+                select_conf(docs[random].name,docs[random].period,docs[random].date);
             }
             else{
                 db.find({}, function(err, docsum){
                     if(docsum.length>0){
                         var random = Math.floor( Math.random() * docsum.length );
-                        $("#rlt-name").html(docsum[random].name);
-                        $("#rlt-period").html(docsum[random].period);
-                        $("#rlt-date").html(docsum[random].date);
+                        select_conf(docsum[random].name,docsum[random].period,docsum[random].date);
                     }
                     else alert("データがありません");
                 });
             } 
         });
-        if(document.getElementById("btn-accept") == null){
-            var btn_act = '<input type="button" value="accept" id="btn-accept">'
-            $("body").append(btn_act);
-            var btn_rjc = '<input type="button" value="reject" id="btn-reject">'
-            $("body").append(btn_rjc);
-        }
     });
 
 });
