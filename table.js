@@ -124,6 +124,31 @@ $(function (){
             return editor;
         };
 
+        var activeEditor = function(cell, onRendered, success, cancel){
+            //create and style input
+            var cellValue = cell.getValue();
+            editor = document.createElement("input");
+            editor.setAttribute('type', 'checkbox');
+            if(cellValue == 1) editor.checked = true;
+            else editor.checked = false;
+
+            function successFunc(){
+                //var field = cell.getField();
+                //db.update({_id:cell.getData()._id}, {$set: {remarks: editor.value}});
+                if(editor.checked){
+                    db.update({_id:cell.getData()._id}, {$set: {active: 1}});
+                    success(1);
+                }
+                else{
+                    db.update({_id:cell.getData()._id}, {$set: {active: 0}});
+                    success(0);
+                }
+            }
+            editor.addEventListener("blur", successFunc);
+        
+            return editor;
+        };
+
         //表を表示
         var table = new Tabulator("#result-table", {
             data:docs,
@@ -134,7 +159,8 @@ $(function (){
                 {title:"Name", field:"name", editor:nameEditor,},
                 {title:"Period", field:"period", editor:periodEditor,},
                 {title:"Last-date", field:"date", editor:dateEditor,},
-                {title:"Remarks", field:"remarks", editor:remarksEditor},
+                {title:"Remarks", field:"remarks", editor:remarksEditor,},
+                {title:"Active", field:"active", formatter:"tickCross", editor:activeEditor,},
             ],
         });
 
@@ -180,7 +206,8 @@ $(function (){
             name: m_name,
             date: today,
             period: m_period,
-            remarks: m_remarks
+            remarks: m_remarks,
+            active: 1
         };
         db.insert(doc);
 
