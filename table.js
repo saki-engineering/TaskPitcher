@@ -126,11 +126,28 @@ $(function (){
         var table = new Tabulator("#result-table", {
             data:docs,
             columns:[
+                {formatter:"rowSelection", titleFormatter:"rowSelection", align:"center", headerSort:false, cellClick:function(e, cell){
+                    cell.getRow().toggleSelect();
+                }},
                 {title:"Name", field:"name", editor:nameEditor,},
                 {title:"Period", field:"period", editor:periodEditor,},
                 {title:"Last-date", field:"date", editor:dateEditor,},
                 {title:"Remarks", field:"remarks", editor:remarksEditor},
             ],
+        });
+
+        $("#del-rows").click(function(){
+            if(confirm("本当に選択したデータを削除しますか？")){
+                var selected_data = table.getSelectedData();
+                for(var i=0;i<selected_data.length;i++){
+                    db.remove({_id:selected_data[i]._id});
+                }
+                location.reload();
+            }
+        });
+
+        $("#testbtn").click(function() {
+            ipcRenderer.send("test", table.getSelectedData());
         });
     });
 
