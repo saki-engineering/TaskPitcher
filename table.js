@@ -8,6 +8,8 @@ $(function (){
         autoload: true
     });
 
+    const moment = require('moment')
+
     db.find({}, function(err, docs){
         var nameEditor = function(cell, onRendered, success, cancel){
             //create and style input
@@ -46,7 +48,7 @@ $(function (){
         //ipcRenderer.send("test", 1,2);
 
         var m_name = $("#form-input").val();
-        var today = new Date();
+        var today = moment().format('YYYY-MM-DD ddd');
 
         var doc = {
             name: m_name,
