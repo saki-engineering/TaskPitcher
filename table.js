@@ -10,6 +10,8 @@ $(function (){
 
     const moment = require('moment')
 
+    var Tabulator = require('tabulator-tables');
+
     db.find({}, function(err, docs){
         var nameEditor = function(cell, onRendered, success, cancel){
             //create and style input
