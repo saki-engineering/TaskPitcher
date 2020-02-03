@@ -11,8 +11,6 @@ $(function (){
 
     const moment = require('moment')
 
-    const Swal = require('sweetalert2')
-
     //候補者をランダムに表示→accpet処理s
     $("#btn-search").click(function() {
         // "hello" という文字列と123という整数を送信

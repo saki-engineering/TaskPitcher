@@ -11,8 +11,6 @@ $(function (){
     const moment = require('moment')
 
     var Tabulator = require('tabulator-tables');
-    
-    const Swal = require('sweetalert2')
 
     db.find({}, function(err, docs){
         //editorの設定
