@@ -154,7 +154,7 @@ $(function (){
             data:docs,
             layout:"fitColumns",
             columns:[
-                {formatter:"rowSelection", titleFormatter:"rowSelection", align:"center", headerSort:false, cellClick:function(e, cell){
+                {formatter:"rowSelection", titleFormatter:"rowSelection", align:"center", width:10, headerSort:false, cellClick:function(e, cell){
                     cell.getRow().toggleSelect();
                 }},
                 {title:"Name", field:"name", editor:nameEditor,},
