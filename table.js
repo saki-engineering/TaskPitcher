@@ -11,6 +11,8 @@ $(function (){
     const moment = require('moment')
 
     var Tabulator = require('tabulator-tables');
+    
+    const Swal = require('sweetalert2')
 
     db.find({}, function(err, docs){
         //editorの設定
@@ -166,13 +168,26 @@ $(function (){
 
         //データ削除ボタンの設定
         $("#del-rows").click(function(){
-            if(confirm("本当に選択したデータを削除しますか？")){
-                var selected_data = table.getSelectedData();
-                for(var i=0;i<selected_data.length;i++){
-                    db.remove({_id:selected_data[i]._id});
+            Swal.fire({
+                title: '確認',
+                text: '選択したデータを本当に削除しますか？',
+                icon: 'warming',
+                showCancelButton: true,
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.value) {
+                    var selected_data = table.getSelectedData();
+                    for(var i=0;i<selected_data.length;i++){
+                        db.remove({_id:selected_data[i]._id});
+                    }
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'SUCCESS!',
+                        text: '削除しました',
+                        onAfterClose: () => location.reload(),
+                    });
                 }
-                location.reload();
-            }
+            })
         });
 
         //フィルターの設置
