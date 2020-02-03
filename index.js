@@ -13,10 +13,6 @@ $(function (){
 
     const Swal = require('sweetalert2')
 
-    $("#test").click(function() {
-        Swal.fire('Any fool can use a computer');
-    });
-
     //候補者をランダムに表示→accpet処理s
     $("#btn-search").click(function() {
         // "hello" という文字列と123という整数を送信
