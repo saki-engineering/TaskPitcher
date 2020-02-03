@@ -1,6 +1,9 @@
 {"name":"test19","date":"2020-02-04","period":"9","remarks":"addmemberのテスト","active":1,"_id":"2w4mtJTAI8RXIzFD"}
 {"name":"test11","date":"2019-10-02","period":"3","remarks":"","active":0,"_id":"4fE7JI091y3peYW5"}
+{"name":"test22","date":"2020-02-04","period":"9","remarks":"errorテスト","active":1,"_id":"82IkbdWGdGTAJVFW"}
 {"name":"test8","date":"2020-02-02","period":"2","remarks":"","active":0,"_id":"CR1dZ0evlrttlQjk"}
+{"name":"test20","date":"2020-02-04","period":"9","remarks":"sweetalertのテスト","active":1,"_id":"DDNZYcd8JqyZu6nA"}
+{"name":"test21","date":"2020-02-04","period":"9","remarks":"nedbのerrorテスト","active":1,"_id":"DiU0xkI3hUBpC32z"}
 {"name":"test18","date":"2020-01-03","period":"7","remarks":"","active":0,"_id":"DsCBKZG6vD0okzpO"}
 {"name":"test15","date":"2019-11-02","period":"3","remarks":"","active":1,"_id":"EoyZydXSgMUbwKre"}
 {"name":"test13","date":"2019-11-02","period":"5","remarks":"","active":0,"_id":"EyaqtLbi5u9I4g0J"}
@@ -18,3 +21,8 @@
 {"name":"test4","date":"2020-02-02","period":"7","remarks":"大宮","active":"1","_id":"mliIAYGIvnEC9Do1"}
 {"name":"test7","date":"2019-11-02","period":"2","remarks":"","active":0,"_id":"oCC8VDUEe1h6xzzf"}
 {"name":"test12","date":"2020-01-02","period":"3","remarks":"","active":0,"_id":"yUZqkhbAub5HyBkf"}
+{"name":"test19","date":"2019-11-04","period":"9","remarks":"addmemberのテスト","active":1,"_id":"2w4mtJTAI8RXIzFD"}
+{"name":"test20","date":"2019-12-04","period":"9","remarks":"sweetalertのテスト","active":1,"_id":"DDNZYcd8JqyZu6nA"}
+{"name":"test21","date":"2020-01-04","period":"9","remarks":"nedbのerrorテスト","active":1,"_id":"DiU0xkI3hUBpC32z"}
+{"name":"test17","date":"2019-12-03","period":"7","remarks":"","active":0,"_id":"PyLHVRtku3VwoeVA"}
+{"name":"test19","date":"2019-11-04","period":"9","remarks":"addmemberのテスト","active":1,"_id":"2w4mtJTAI8RXIzFD"}

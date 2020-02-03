@@ -27,7 +27,22 @@ $(function (){
             remarks: m_remarks,
             active: 1
         };
-        db.insert(doc);
+        db.insert(doc,function(err, newDoc){
+            if (err !== null) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'INSERT ERROR',
+                    text: err,
+                });
+            }
+            else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'SUCCESS!',
+                    text: 'データを追加しました',
+                });
+            }
+        });
 
         $("#form-name").val("");
         $("#form-period").val("");
