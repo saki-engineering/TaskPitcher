@@ -24,10 +24,22 @@ $(function (){
 
         function select_conf(c_name,c_period,c_date){
             var dialog = c_period + "期" + c_name + "さん(最終割り振り: " + c_date + "が選ばれました。\nこの人に割り振りますか？";
-            if (confirm(dialog)) {
-                db.update({name:c_name, date:c_date, period:c_period}, {$set: {date: moment().format('YYYY-MM-DD')}});
-                alert("処理が終わりました");
-            }
+            Swal.fire({
+                title: '候補者を選びました',
+                text: dialog,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.value) {
+                    db.update({name:c_name, date:c_date, period:c_period}, {$set: {date: moment().format('YYYY-MM-DD')}});
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'SUCCESS!',
+                        text: '処理が終わりました',
+                    })
+                }
+            })
         }
 
         db.find({active:1, date:{$lte: moment().subtract(1,'M').format('YYYY-MM-DD')}}, function(err, docs){
@@ -41,7 +53,13 @@ $(function (){
                         var random = Math.floor( Math.random() * docsum.length );
                         select_conf(docsum[random].name,docsum[random].period,docsum[random].date);
                     }
-                    else alert("データがありません");
+                    else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR',
+                            text: '選べる候補者が一人もいません',
+                        })
+                    }
                 });
             } 
         });
