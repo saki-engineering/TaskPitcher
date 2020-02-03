@@ -152,6 +152,7 @@ $(function (){
         //表を表示
         var table = new Tabulator("#result-table", {
             data:docs,
+            layout:"fitColumns",
             columns:[
                 {formatter:"rowSelection", titleFormatter:"rowSelection", align:"center", headerSort:false, cellClick:function(e, cell){
                     cell.getRow().toggleSelect();
