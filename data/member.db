@@ -1,6 +1,6 @@
 {"name":"test11","date":"2019-10-02","period":"3","remarks":"","active":0,"_id":"4fE7JI091y3peYW5"}
 {"name":"test8","date":"2020-02-02","period":"2","remarks":"","active":0,"_id":"CR1dZ0evlrttlQjk"}
-{"name":"test18","date":"2020-02-03","period":"7","remarks":"","active":1,"_id":"DsCBKZG6vD0okzpO"}
+{"name":"test18","date":"2020-01-03","period":"7","remarks":"","active":0,"_id":"DsCBKZG6vD0okzpO"}
 {"name":"test15","date":"2019-11-02","period":"3","remarks":"","active":1,"_id":"EoyZydXSgMUbwKre"}
 {"name":"test13","date":"2019-11-02","period":"5","remarks":"","active":0,"_id":"EyaqtLbi5u9I4g0J"}
 {"name":"test14","date":"2019-12-02","period":"5","remarks":"","active":0,"_id":"FaFMgehsUMfaOVOQ"}
@@ -10,14 +10,10 @@
 {"name":"test10","date":"2020-01-02","period":"2","remarks":"","active":1,"_id":"Kuw8LiDlu7fYoGsa"}
 {"name":"test5","date":"2019-10-02","period":"1","remarks":"","active":"1","_id":"M0M48pRXD3YIkLKx"}
 {"name":"test3","date":"2020-01-01","period":"5","remarks":"横浜","active":"1","_id":"Npe4SGMDdnDJ9Wt6"}
-{"name":"test17","date":"2020-02-03","period":"7","remarks":"","active":1,"_id":"PyLHVRtku3VwoeVA"}
+{"name":"test17","date":"2019-12-03","period":"7","remarks":"","active":0,"_id":"PyLHVRtku3VwoeVA"}
 {"name":"test2","date":"2020-02-02","period":"1","remarks":"","active":1,"_id":"b16reqjRMacOk7cw"}
 {"name":"test1","date":"2020-01-02","period":"1","remarks":"","active":"1","_id":"eibX5Z6W80Ox3WRc"}
 {"name":"test6","date":"2020-02-02","period":"1","remarks":"","active":0,"_id":"hnlzzQQjH9TXPTGr"}
 {"name":"test4","date":"2020-02-02","period":"7","remarks":"大宮","active":"1","_id":"mliIAYGIvnEC9Do1"}
 {"name":"test7","date":"2019-11-02","period":"2","remarks":"","active":0,"_id":"oCC8VDUEe1h6xzzf"}
 {"name":"test12","date":"2020-01-02","period":"3","remarks":"","active":0,"_id":"yUZqkhbAub5HyBkf"}
-{"name":"test18","date":"2020-02-03","period":"7","remarks":"","active":0,"_id":"DsCBKZG6vD0okzpO"}
-{"name":"test17","date":"2020-02-03","period":"7","remarks":"","active":0,"_id":"PyLHVRtku3VwoeVA"}
-{"name":"test18","date":"2020-01-03","period":"7","remarks":"","active":0,"_id":"DsCBKZG6vD0okzpO"}
-{"name":"test17","date":"2019-12-03","period":"7","remarks":"","active":0,"_id":"PyLHVRtku3VwoeVA"}
