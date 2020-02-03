@@ -49,4 +49,9 @@ $(function (){
         $("#form-remarks").val("");
     });
 
+    $("#btn-upload").click(function() {
+        var file = $("#form-importfile").val();
+        ipcRenderer.send("test", file);
+    });
+     
 });
