@@ -15,64 +15,68 @@
 </head>
 
 <body>
-  <h1>TaskPitcher</h1>
-  <input type="button" value="トップに戻る" onclick="location.href='./index.html'" class="btn btn-link">
+  <div class="container">
+    <h1>TaskPitcher</h1>
+    <input type="button" value="トップに戻る" onclick="location.href='./index.html'" class="btn btn-link">
 
-  <form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="form-name">名前</label>
-        <input type="text" name="member" id="form-name" class="form-control">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="form-name">名前</label>
+          <input type="text" name="member" id="form-name" class="form-control">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="form-period">期</label>
+          <input type="number" name="period" id="form-period" class="form-control">
+        </div>
       </div>
-      <div class="form-group col-md-2">
-        <label for="form-period">期</label>
-        <input type="number" name="period" id="form-period" class="form-control">
+      <div class="form-row">
+        <div class="form-group col-md-10">
+          <label for="form-remarks">備考</label>
+          <input type="text" name="remarks" id="form-remarks" class="form-control">
+        </div>
       </div>
-    </div>
-    <div class="form-group col-md-10">
-      <label for="form-remarks">備考</label>
-      <textarea rows="3" cols="30" id="form-remarks" class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-      <input type="button" value="入力" id="btn-input" class="btn btn-dark">
-    </div>
-  </form>
+      <div class="form-group">
+        <input type="button" value="入力" id="btn-input" class="btn btn-primary">
+      </div>
+    </form>
 
-  <div>
-    <input type="button" value="Delete Selected Datas" id="del-rows" class="btn btn-dark">
+    <div>
+      <input type="button" value="Delete Selected Datas" id="del-rows" class="btn btn-danger">
+    </div>
+
+    <form>
+      <div class="form-row">
+        <div class="form-group col-3">
+          <select id="filter-field" class="form-control">
+          <option value=""></option>
+          <option value="name">Name</option>
+          <option value="period">Period</option>
+          <option value="date">Last-date</option>
+          </select>
+        </div>
+        <div class="form-group col-1">
+          <select id="filter-type" class="form-control">
+          <option value="=">=</option>
+          <option value="<"><</option>
+          <option value="<="><=</option>
+          <option value=">">></option>
+          <option value=">=">>=</option>
+          <option value="!=">!=</option>
+          <option value="like">like</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <input type="text" id="filter-value" class="form-control">
+        </div>
+        <div class="form-group col">
+          <input type="button" value="Clear Filter" id="filter-clear" class="btn btn-primary">
+        </div>
+      </div>
+    </form>
+
+    <div id="result-table" class="table table-striped thead-dark table-bordered"></div>
   </div>
-
-  <form>
-    <div class="form-row">
-      <div class="form-group col-3">
-        <select id="filter-field" class="form-control">
-        <option value=""></option>
-        <option value="name">Name</option>
-        <option value="period">Period</option>
-        <option value="date">Last-date</option>
-        </select>
-      </div>
-      <div class="form-group col-1">
-        <select id="filter-type" class="form-control">
-        <option value="=">=</option>
-        <option value="<"><</option>
-        <option value="<="><=</option>
-        <option value=">">></option>
-        <option value=">=">>=</option>
-        <option value="!=">!=</option>
-        <option value="like">like</option>
-        </select>
-      </div>
-      <div class="form-group col">
-        <input type="text" id="filter-value" class="form-control">
-      </div>
-      <div class="form-group col">
-        <input type="button" value="Clear Filter" id="filter-clear" class="btn btn-dark">
-      </div>
-    </div>
-  </form>
-
-  <div id="result-table" class="thead-dark"></div>
 
 </body>
 
