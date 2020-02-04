@@ -104,10 +104,14 @@ $(function (){
                 }
                 else if('date' in data[0]){
                     for(var i=0;i<data.length;i++){
+                        //csvのdateプロパティが空なら、デフォルト値を設定する
+                        var c_date;
+                        if(data[i].date == "") c_date = moment().subtract(1,'M').format('YYYY-MM-DD');
+                        else c_date = moment(data[i].date).format('YYYY-MM-DD');
 
                         var doc = {
                             name: data[i].name,
-                            date: moment(data[i].date).format('YYYY-MM-DD'),
+                            date: c_date,
                             period: data[i].period,
                             remarks: data[i].remarks,
                             active: 1
