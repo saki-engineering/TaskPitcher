@@ -64,10 +64,8 @@ $(function (){
     });
 
     $("#btn-upload").click(function() {
-        ipcRenderer.send("test", path);
-        fs.readFile(path[0], 'utf8', (err, data) => {
-            ipcRenderer.send("test", data);
-        });
+        var contents = fs.readFileSync(path[0], 'utf8');
+        ipcRenderer.send("test", contents);
     });
      
 });
