@@ -25,33 +25,42 @@ $(function (){
         var m_period = $("#form-period").val();
         var m_remarks = $("#form-remarks").val();
 
-        var doc = {
-            name: m_name,
-            date: today,
-            period: m_period,
-            remarks: m_remarks,
-            active: 1
-        };
-        db.insert(doc,function(err, newDoc){
-            if (err !== null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'INSERT ERROR',
-                    text: err,
-                });
-            }
-            else{
-                Swal.fire({
-                    icon: 'success',
-                    title: 'SUCCESS!',
-                    text: 'データを追加しました',
-                });
-            }
-        });
+        if(m_name == ""){
+            Swal.fire({
+                icon: 'warning',
+                title: 'WARNING',
+                text: '名前を入力してください',
+            });
+        }
+        else{
+            var doc = {
+                name: m_name,
+                date: today,
+                period: m_period,
+                remarks: m_remarks,
+                active: 1
+            };
+            db.insert(doc,function(err, newDoc){
+                if (err !== null) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'INSERT ERROR',
+                        text: err,
+                    });
+                }
+                else{
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'SUCCESS!',
+                        text: 'データを追加しました',
+                    });
+                }
+            });
 
-        $("#form-name").val("");
-        $("#form-period").val("");
-        $("#form-remarks").val("");
+            $("#form-name").val("");
+            $("#form-period").val("");
+            $("#form-remarks").val("");
+        }
     });
 
     var path = "";
