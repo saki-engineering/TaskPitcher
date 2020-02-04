@@ -176,15 +176,31 @@ $(function (){
             }).then((result) => {
                 if (result.value) {
                     var selected_data = table.getSelectedData();
+                    var fail = [];
+
                     for(var i=0;i<selected_data.length;i++){
-                        db.remove({_id:selected_data[i]._id});
+                        db.remove({_id:selected_data[i]._id}, function(err, newDoc){
+                            if (err !== null) {
+                                fail.push(i);
+                            }
+                        });
                     }
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'SUCCESS!',
-                        text: '削除しました',
-                        onAfterClose: () => location.reload(),
-                    });
+                    if(fail.length==0){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'SUCCESS!',
+                            text: '削除しました',
+                            onAfterClose: () => location.reload(),
+                        });
+                    }
+                    else{
+                        Swal.fire({
+                            icon: 'info',
+                            title: '一部データの削除に失敗しました',
+                            text: '失敗したデータ→' + fail.join(','),
+                            onAfterClose: () => location.reload(),
+                        });
+                    }
                 }
             })
         });
