@@ -32,7 +32,7 @@ app.on('ready', function(){
   mainWindow = new BrowserWindow({width: 800, height: 600, webPreferences: {
     nodeIntegration: true
   }});
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/home.html');
 
   // ウィンドウが閉じられたらアプリも終了
   mainWindow.on('closed', function(){
