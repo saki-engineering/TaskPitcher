@@ -15,13 +15,15 @@ const Menu = electron.Menu
 // メインウィンドウはGCされないようにグローバル宣言
 let mainWindow;
 
+const open = require('open');
+
 //メニューバー内容
 let template = [{
   label: 'TaskPitcher',
   submenu: [{
     label: 'ReadMe',
     click: function(){
-      open('https://github.com/saki-engineering/TaskPitcher', '_blank');
+      open('https://github.com/saki-engineering/TaskPitcher');
     }
   }, {
     type: 'separator'
