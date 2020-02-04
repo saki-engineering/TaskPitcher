@@ -16,12 +16,13 @@ $(function (){
 
     const csv = require("csv-parse");
 
+    //一人ずつ追加するフォームの挙動
     $("#btn-input").click(function() {
         // "hello" という文字列と123という整数を送信
         //ipcRenderer.send("test", 1,2);
 
         var m_name = $("#form-name").val();
-        var today = moment().format('YYYY-MM-DD');
+        var m_date = moment().subtract(1,'M').format('YYYY-MM-DD');
         var m_period = $("#form-period").val();
         var m_remarks = $("#form-remarks").val();
 
@@ -29,13 +30,13 @@ $(function (){
             Swal.fire({
                 icon: 'warning',
                 title: 'WARNING',
-                text: '名前を入力してください',
+                text: '追加するメンバーの名前を入力してください',
             });
         }
         else{
             var doc = {
                 name: m_name,
-                date: today,
+                date: m_date,
                 period: m_period,
                 remarks: m_remarks,
                 active: 1
@@ -44,7 +45,7 @@ $(function (){
                 if (err !== null) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'INSERT ERROR',
+                        title: 'データの追加に失敗しました',
                         text: err,
                     });
                 }
@@ -63,10 +64,9 @@ $(function (){
         }
     });
 
+    //アップロードするcsvファイルのパスを取得+アップロードボタンを有効化
     var path = "";
-
     $("#btn-fileslt").click(function() {
-        //var file = $("#form-importfile").val();
         path = dialog.showOpenDialogSync({
             filters: [
                 {name: 'CSV', extensions: ['csv',]}, 
@@ -78,6 +78,7 @@ $(function (){
         }
     });
 
+    //アップしたcsvファイルを処理
     $("#btn-filecancel").click(function() {
         path = "";
         $("#form-file").val("select file...");
@@ -93,7 +94,7 @@ $(function (){
             if (err != null){
                 Swal.fire({
                     icon: 'error',
-                    title: 'IMPORT ERROR',
+                    title: 'csvファイルを開けませんでした',
                     text: err,
                 });
             }
@@ -107,24 +108,16 @@ $(function (){
                 if(data.length==0) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'FILE ERROR',
-                        text: 'ファイルにデータが存在しません',
+                        title: 'NO DATA',
+                        text: 'csvファイル内にデータが存在しません',
                     });
                 }
                 else if('date' in data[0]){
                     for(var i=0;i<data.length;i++){
-                        //csvにremarksがないなら、デフォルト値をnull→空文字列にする
-                        var c_remarks;
-                        if('remarks' in data[0]){
-                            c_remarks = data[i].remarks;
-                        }
-                        else c_remarks = "";
-
-                        //csvのdateプロパティが空なら、デフォルト値を設定+remarksにその旨追記する
+                        //csvのdateプロパティが空なら、デフォルト値を設定する
                         var c_date;
                         if(data[i].date == ""){
                             c_date = moment().subtract(1,'M').format('YYYY-MM-DD');
-                            c_remarks += "(日付はインポート時のデフォルト値)";
                         }
                         else c_date = moment(data[i].date).format('YYYY-MM-DD');
 
@@ -132,7 +125,7 @@ $(function (){
                             name: data[i].name,
                             date: c_date,
                             period: data[i].period,
-                            remarks: c_remarks,
+                            remarks: data[i].remarks,
                             active: 1
                         };
                         db.insert(doc,function(err, newDoc){
@@ -151,8 +144,8 @@ $(function (){
                     else{
                         Swal.fire({
                             icon: 'info',
-                            title: 'PARTIAL INSERT ERROR',
-                            text: '一部データの挿入に失敗しました。\n失敗したデータ→' + fail.join(','),
+                            title: '一部データの挿入に失敗しました',
+                            text: '失敗したデータ→' + fail.join(','),
                         });
                     }
                 }
@@ -160,8 +153,8 @@ $(function (){
                 else{
                     Swal.fire({
                         icon: 'error',
-                        title: 'JSON ERROR',
-                        text: 'dateプロパティを用意してください',
+                        title: 'csvファイルの形式が違います',
+                        text: 'csvファイルにdateプロパティを用意してください',
                     });
                 }
             }
