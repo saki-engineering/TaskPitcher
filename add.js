@@ -70,13 +70,49 @@ $(function (){
         .pipe(csv({
             columns: true //header無しのCSV fileはfalse
         }, function (err, data) {
+            if (err != null){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'IMPORT ERROR',
+                    text: err,
+                });
+            }
+            else{
+                data = JSON.stringify(data);
+                data = JSON.parse(data);
 
-            data = JSON.stringify(data);
-            data = JSON.parse(data);
+                var flg = -1;
 
-            ipcRenderer.send("test", data);
-
-            ipcRenderer.send("test", err);
+                for(var i=0;i<data.length;i++){
+                    var doc = {
+                        name: data[i].name,
+                        date: moment(data[0].date).format('YYYY-MM-DD'),
+                        period: data[0].period,
+                        remarks: data[0].remarks,
+                        active: 1
+                    };
+                    db.insert(doc,function(err, newDoc){
+                        if (err !== null) {
+                            flg = i;
+                            break;
+                        }
+                    });
+                }
+                if(flg==-1){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'SUCCESS!',
+                        text: 'データを追加しました',
+                    });
+                }
+                else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'INSERT ERROR',
+                        text: (flg+1) + '番目のデータ挿入でエラーが発生しました',
+                    });
+                }
+            }
         }))
     });
      
