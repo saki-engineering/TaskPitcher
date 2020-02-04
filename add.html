@@ -54,11 +54,21 @@
     </form>
 
     <form>
-      <div class="form-group">
-        <input type="button" value="ファイル選択" id="btn-fileslt" class="btn btn-primary">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" name="filename" id="form-file" class="form-control" value="select file..." disabled>
+        </div>
+        <div class="form-group">
+          <input type="button" value="ファイル選択" id="btn-fileslt" class="btn btn-primary">
+        </div>
+        <div class="form-group">
+          <input type="button" value="Clear" id="btn-filecancel" class="btn btn-danger">
+        </div>
       </div>
-      <div class="form-group">
-        <input type="button" value="アップロード" id="btn-upload" class="btn btn-primary">
+      <div class="form-row">
+        <div class="form-group">
+          <input type="button" value="アップロード" id="btn-upload" class="btn btn-primary">
+        </div>
       </div>
     </form>
 

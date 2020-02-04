@@ -63,6 +63,14 @@ $(function (){
                 {name: 'CSV', extensions: ['csv',]}, 
             ],
         });
+        if(path){
+            $("#form-file").val(path);
+        }
+    });
+
+    $("#btn-filecancel").click(function() {
+        path = "";
+        $("#form-file").val("select file...");
     });
 
     $("#btn-upload").click(function() {
