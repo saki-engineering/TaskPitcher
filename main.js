@@ -28,25 +28,37 @@ let template = [{
   }, {
     type: 'separator'
   }, {
-    label: 'コピー',
-    accelerator: 'CmdOrCtrl+C',
-    role: 'copy'
+    label: 'TaskPitcher を終了',
+    accelerator: 'Cmd+Q',
+    click: function(){
+      app.quit();
+    }
   }]
 }, {
-  label: '表示',
+  label: 'Window',
   submenu: [{
-    label: '全画面表示切り替える',
-    accelerator: (function() {
-      if (process.platform === 'darwin') {
-        return 'Ctrl+Command+F'
-      } else {
-        return 'F11'
-      }
-    })(),
-    click: function(item, focusedWindow) {
-      if (focusedWindow) {
-        focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
-      }
+    label: '最小化',
+    accelerator: 'Cmd+M',
+    click: function(){
+      mainWindow.minimize();
+    }
+  }, {
+    label: '最大化',
+    accelerator: 'Cmd+Ctrl+F',
+    click: function(){
+      mainWindow.maximize();
+    }
+  }, {
+    label: 'リロード',
+    accelerator: 'Cmd+R',
+    click: function(){
+      BrowserWindow.getFocusedWindow().reload();
+    }
+  }, {
+    label: '閉じる',
+    accelerator: 'Cmd+W',
+    click: function(){
+      mainWindow.close();
     }
   }]
 }]
