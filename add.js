@@ -14,6 +14,8 @@ $(function (){
     const { dialog } = require('electron').remote
     var fs = require('fs');
 
+    const csv = require("csv-parse");
+
     $("#btn-input").click(function() {
         // "hello" という文字列と123という整数を送信
         //ipcRenderer.send("test", 1,2);
@@ -64,8 +66,18 @@ $(function (){
     });
 
     $("#btn-upload").click(function() {
-        var contents = fs.readFileSync(path[0], 'utf8');
-        ipcRenderer.send("test", contents);
+       fs.createReadStream(path[0],'utf-8')
+        .pipe(csv({
+            columns: true //header無しのCSV fileはfalse
+        }, function (err, data) {
+
+            data = JSON.stringify(data);
+            data = JSON.parse(data);
+
+            ipcRenderer.send("test", data);
+
+            ipcRenderer.send("test", err);
+        }))
     });
      
 });
