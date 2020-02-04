@@ -12,6 +12,7 @@ $(function (){
     const moment = require('moment')
 
     const { dialog } = require('electron').remote
+    var fs = require('fs');
 
     $("#btn-input").click(function() {
         // "hello" という文字列と123という整数を送信
@@ -51,15 +52,22 @@ $(function (){
         $("#form-remarks").val("");
     });
 
-    $("#btn-upload").click(function() {
+    var path;
+
+    $("#btn-fileslt").click(function() {
         //var file = $("#form-importfile").val();
-        var path = dialog.showOpenDialogSync({
+        path = dialog.showOpenDialogSync({
             filters: [
                 {name: 'CSV', extensions: ['csv',]}, 
             ],
         });
-        
+    });
+
+    $("#btn-upload").click(function() {
         ipcRenderer.send("test", path);
+        fs.readFile(path[0], 'utf8', (err, data) => {
+            ipcRenderer.send("test", data);
+        });
     });
      
 });
