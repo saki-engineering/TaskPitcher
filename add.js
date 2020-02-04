@@ -54,7 +54,7 @@ $(function (){
         $("#form-remarks").val("");
     });
 
-    var path;
+    var path = "";
 
     $("#btn-fileslt").click(function() {
         //var file = $("#form-importfile").val();
@@ -65,12 +65,14 @@ $(function (){
         });
         if(path){
             $("#form-file").val(path);
+            $("#btn-upload").prop("disabled", false);
         }
     });
 
     $("#btn-filecancel").click(function() {
         path = "";
         $("#form-file").val("select file...");
+        $("#btn-upload").prop("disabled", true);
     });
 
     $("#btn-upload").click(function() {
@@ -92,11 +94,12 @@ $(function (){
                 var flg = -1;
 
                 for(var i=0;i<data.length;i++){
+                    ipcRenderer.send("test", data[i]);
                     var doc = {
                         name: data[i].name,
-                        date: moment(data[0].date).format('YYYY-MM-DD'),
-                        period: data[0].period,
-                        remarks: data[0].remarks,
+                        date: moment(data[i].date).format('YYYY-MM-DD'),
+                        period: data[i].period,
+                        remarks: data[i].remarks,
                         active: 1
                     };
                     db.insert(doc,function(err, newDoc){
@@ -121,6 +124,9 @@ $(function (){
                     });
                 }
             }
+            path = "";
+            $("#form-file").val("select file...");
+            $("#btn-upload").prop("disabled", true);
         }))
     });
      
