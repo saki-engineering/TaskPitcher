@@ -78,8 +78,9 @@ $(function (){
     $("#btn-upload").click(function() {
        fs.createReadStream(path[0],'utf-8')
         .pipe(csv({
-            columns: true //header無しのCSV fileはfalse
+            columns: true
         }, function (err, data) {
+            //csvのパースにエラーがでた
             if (err != null){
                 Swal.fire({
                     icon: 'error',
@@ -91,39 +92,58 @@ $(function (){
                 data = JSON.stringify(data);
                 data = JSON.parse(data);
 
-                var flg = -1;
+                var fail = [];
 
-                for(var i=0;i<data.length;i++){
-                    ipcRenderer.send("test", data[i]);
-                    var doc = {
-                        name: data[i].name,
-                        date: moment(data[i].date).format('YYYY-MM-DD'),
-                        period: data[i].period,
-                        remarks: data[i].remarks,
-                        active: 1
-                    };
-                    db.insert(doc,function(err, newDoc){
-                        if (err !== null) {
-                            flg = i;
-                            break;
-                        }
-                    });
-                }
-                if(flg==-1){
+                //csvファイルにデータがない
+                if(data.length==0) {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'SUCCESS!',
-                        text: 'データを追加しました',
+                        icon: 'error',
+                        title: 'FILE ERROR',
+                        text: 'ファイルにデータが存在しません',
                     });
                 }
+                else if('date' in data[0]){
+                    for(var i=0;i<data.length;i++){
+
+                        var doc = {
+                            name: data[i].name,
+                            date: moment(data[i].date).format('YYYY-MM-DD'),
+                            period: data[i].period,
+                            remarks: data[i].remarks,
+                            active: 1
+                        };
+                        db.insert(doc,function(err, newDoc){
+                            if (err !== null) {
+                                fail.push(i);
+                            }
+                        });
+                    }
+                    if(fail.length==0){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'SUCCESS!',
+                            text: 'データを追加しました',
+                        });
+                    }
+                    else{
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'PARTIAL INSERT ERROR',
+                            text: '一部データの挿入に失敗しました。\n失敗したデータ→' + fail.join(','),
+                        });
+                    }
+                }
+                //jsonにdateプロパティがない
                 else{
                     Swal.fire({
                         icon: 'error',
-                        title: 'INSERT ERROR',
-                        text: (flg+1) + '番目のデータ挿入でエラーが発生しました',
+                        title: 'JSON ERROR',
+                        text: 'dateプロパティを用意してください',
                     });
                 }
             }
+
+            //全ての場合に共通した終了処理
             path = "";
             $("#form-file").val("select file...");
             $("#btn-upload").prop("disabled", true);
