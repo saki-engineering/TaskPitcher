@@ -104,16 +104,26 @@ $(function (){
                 }
                 else if('date' in data[0]){
                     for(var i=0;i<data.length;i++){
-                        //csvのdateプロパティが空なら、デフォルト値を設定する
+                        //csvにremarksがないなら、デフォルト値をnull→空文字列にする
+                        var c_remarks;
+                        if('remarks' in data[0]){
+                            c_remarks = data[i].remarks;
+                        }
+                        else c_remarks = "";
+
+                        //csvのdateプロパティが空なら、デフォルト値を設定+remarksにその旨追記する
                         var c_date;
-                        if(data[i].date == "") c_date = moment().subtract(1,'M').format('YYYY-MM-DD');
+                        if(data[i].date == ""){
+                            c_date = moment().subtract(1,'M').format('YYYY-MM-DD');
+                            c_remarks += "(日付はインポート時のデフォルト値)";
+                        }
                         else c_date = moment(data[i].date).format('YYYY-MM-DD');
 
                         var doc = {
                             name: data[i].name,
                             date: c_date,
                             period: data[i].period,
-                            remarks: data[i].remarks,
+                            remarks: c_remarks,
                             active: 1
                         };
                         db.insert(doc,function(err, newDoc){
