@@ -11,6 +11,8 @@ $(function (){
 
     const moment = require('moment')
 
+    const { dialog } = require('electron').remote
+
     $("#btn-input").click(function() {
         // "hello" という文字列と123という整数を送信
         //ipcRenderer.send("test", 1,2);
@@ -50,8 +52,14 @@ $(function (){
     });
 
     $("#btn-upload").click(function() {
-        var file = $("#form-importfile").val();
-        ipcRenderer.send("test", file);
+        //var file = $("#form-importfile").val();
+        var path = dialog.showOpenDialogSync({
+            filters: [
+                {name: 'CSV', extensions: ['csv',]}, 
+            ],
+        });
+        
+        ipcRenderer.send("test", path);
     });
      
 });
