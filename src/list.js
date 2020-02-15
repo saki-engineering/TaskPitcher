@@ -210,19 +210,29 @@ $(function (){
         });
 
         $("#output-csv").click(function(){
+            /*
             var input = [
                 {Rider: "MARQUEZ Marc", Nation: "SPA", Points: "298"},
                 {Rider: "ROSSI Valentino", Nation: "ITA", Points: "249"},
                 {Rider: "LORENZO Jorge", Nation: "SPA", Points: "233"},
             ];
-            stringify(input,(err, output) => {
-                ipcRenderer.send("test", output);
-            })
-            /*
-            db.find({}, function(err, docs){
-            });
             */
-            ipcRenderer.send("test", 1);
+            db.find({}, function(err, docs){
+                var input = [];
+                for(var i=0;i<docs.length;i++){
+                    var obj = {
+                        id: docs[i]._id,
+                        name: docs[i].name,
+                        date: docs[i].date,
+                        period: docs[i].period,
+                        remarks: docs[i].remarks
+                    };
+                    input.push(obj);
+                }
+                stringify(input,{header: true},(err, output) => {
+                    ipcRenderer.send("test", output);
+                });
+            });
         });
 
         //フィルターの設置
