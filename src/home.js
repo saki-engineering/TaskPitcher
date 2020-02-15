@@ -2,10 +2,12 @@ $(function (){
     // IPC通信を行うために、レンダラープロセス側では ipcRenderer というモジュールを require する
     const { ipcRenderer } = require("electron");
 
+    const { app } = require('electron').remote
+
     //NeDBの設定
     var Datastore = require('nedb');
     var db = new Datastore({ 
-        filename: 'src/data/member.db',
+        filename: app.getPath('userData')+'/member.db',
         autoload: true
     });
 
@@ -14,7 +16,7 @@ $(function (){
     //候補者をランダムに表示→accpet処理
     $("#btn-search").click(function() {
         // "hello" という文字列と123という整数を送信
-        //ipcRenderer.send("test", 1); 
+        //ipcRenderer.send("test", app.getAppPath()+'/src/data/member.db'); 
 
         //選ばれた候補者をaccept処理する
         function select_conf(c_name,c_period,c_date,c_remarks){

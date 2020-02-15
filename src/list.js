@@ -2,9 +2,11 @@ $(function (){
     // IPC通信を行うために、レンダラープロセス側では ipcRenderer というモジュールを require する
     const { ipcRenderer } = require("electron");
 
+    const { app } = require('electron').remote
+
     var Datastore = require('nedb');
     var db = new Datastore({ 
-        filename: 'src/data/member.db',
+        filename: app.getPath('userData')+'/member.db',
         autoload: true
     });
 
