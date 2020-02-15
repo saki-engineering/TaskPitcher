@@ -14,6 +14,8 @@ $(function (){
 
     var Tabulator = require('tabulator-tables');
 
+    var stringify = require('csv-stringify');
+
     db.find({}, function(err, docs){
         //editorの設定
         var nameEditor = function(cell, onRendered, success, cancel){
@@ -205,6 +207,22 @@ $(function (){
                     }
                 }
             })
+        });
+
+        $("#output-csv").click(function(){
+            var input = [
+                {Rider: "MARQUEZ Marc", Nation: "SPA", Points: "298"},
+                {Rider: "ROSSI Valentino", Nation: "ITA", Points: "249"},
+                {Rider: "LORENZO Jorge", Nation: "SPA", Points: "233"},
+            ];
+            stringify(input,(err, output) => {
+                ipcRenderer.send("test", output);
+            })
+            /*
+            db.find({}, function(err, docs){
+            });
+            */
+            ipcRenderer.send("test", 1);
         });
 
         //フィルターの設置
