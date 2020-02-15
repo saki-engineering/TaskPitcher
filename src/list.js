@@ -15,6 +15,8 @@ $(function (){
     var Tabulator = require('tabulator-tables');
 
     var stringify = require('csv-stringify');
+    var fs = require('fs');
+    const { dialog } = require('electron').remote
 
     db.find({}, function(err, docs){
         //editorの設定
@@ -209,15 +211,10 @@ $(function (){
             })
         });
 
+        //DBの中身をcsvに出力するボタン
         $("#output-csv").click(function(){
-            /*
-            var input = [
-                {Rider: "MARQUEZ Marc", Nation: "SPA", Points: "298"},
-                {Rider: "ROSSI Valentino", Nation: "ITA", Points: "249"},
-                {Rider: "LORENZO Jorge", Nation: "SPA", Points: "233"},
-            ];
-            */
             db.find({}, function(err, docs){
+                //書き出すデータの作成
                 var input = [];
                 for(var i=0;i<docs.length;i++){
                     var obj = {
@@ -229,9 +226,35 @@ $(function (){
                     };
                     input.push(obj);
                 }
-                stringify(input,{header: true},(err, output) => {
-                    ipcRenderer.send("test", output);
+                //ファイル選択ダイアログの表示
+                var saved_filepath = dialog.showSaveDialogSync(null, {
+                    title: '保存',
+                    defaultPath: app.getPath('home'),
+                    filters: [
+                        {name: 'CSVファイル', extensions: ['csv']},
+                    ]
                 });
+                if(saved_filepath){
+                    stringify(input,{header: true},(err, output) => {
+                        fs.writeFile(saved_filepath, output , (err) => {
+                            if(err){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'csvファイルの書き出しに失敗しました',
+                                    text: err
+                                });
+                            }
+                            // 書き出しに成功した場合
+                            else{
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'SUCCESS!',
+                                    text: 'csvファイルの書き出しに成功しました',
+                                });
+                            }
+                        });
+                    });
+                }
             });
         });
 
