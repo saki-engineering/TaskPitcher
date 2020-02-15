@@ -17,5 +17,9 @@
     "open": "^7.0.2",
     "sweetalert2": "^9.7.1",
     "tabulator-tables": "^4.5.3"
+  },
+  "devDependencies": {
+    "electron": "^8.0.1",
+    "electron-builder": "^22.3.2"
   }
 }
