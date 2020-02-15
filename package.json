@@ -4,10 +4,30 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node_modules/.bin/electron ."
+  },
+  "build": {
+    "appId": "com.electron.taskpitcher",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "assets/mac/icon_mac.icns",
+      "node_modules",
+      "src",
+      "package.json",
+      "package-lock.json"
+    ],
+    "mac": {
+      "icon": "assets/mac/icon_mac.icns",
+      "target": [
+        "dmg"
+      ]
+    }
   },
   "keywords": [],
-  "author": "",
+  "author": "saki-engineering",
   "license": "ISC",
   "dependencies": {
     "@sweetalert2/themes": "^3.1.0",
