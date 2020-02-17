@@ -54,13 +54,13 @@ $(function (){
         }
 
         //候補者を選ぶ
-        db.find({active:1, date:{$lte: moment().subtract(1,'M').format('YYYY-MM-DD')}}, function(err, docs){
+        db.find({active:1, date:{$lte: moment().subtract(1,'M').format('YYYY-MM-DD')}}).sort({date: -1}).exec(function(err, docs){
             if(docs.length>0){
                 var random = Math.floor( Math.random() * docs.length );
                 select_conf(docs[random].name,docs[random].period,docs[random].date,docs[random].remarks);
             }
             else{
-                db.find({active:1}, function(err, docsum){
+                db.find({active:1}).sort({date: -1}).exec(function(err, docsum){
                     if(docsum.length>0){
                         var random = Math.floor( Math.random() * docsum.length );
                         select_conf(docsum[random].name,docsum[random].period,docsum[random].date,docsum[random].remarks);
