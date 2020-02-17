@@ -13,7 +13,7 @@
       "output": "dist"
     },
     "files": [
-      "assets/mac/icon_mac.icns",
+      "assets",
       "src",
       "package.json",
       "package-lock.json"
@@ -23,6 +23,14 @@
       "target": [
         "dmg"
       ]
+    },
+    "win": {
+      "icon": "assets/win/icon_win.ico",
+      "target": "nsis"
+    },
+    "nsis":{
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     }
   },
   "keywords": [],
