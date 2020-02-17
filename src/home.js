@@ -53,16 +53,24 @@ $(function (){
             })
         }
 
+        //一様分布[0,1]から0側に傾斜をつけた[0,n]分布に変える
+        function parabola(N){
+            var x = Math.random();
+            return Math.floor(x * x * N);
+        }
+
         //候補者を選ぶ
-        db.find({active:1, date:{$lte: moment().subtract(1,'M').format('YYYY-MM-DD')}}).sort({date: -1}).exec(function(err, docs){
+        db.find({active:1, date:{$lte: moment().subtract(1,'M').format('YYYY-MM-DD')}}).sort({date: 1}).exec(function(err, docs){
             if(docs.length>0){
-                var random = Math.floor( Math.random() * docs.length );
+                //var random = Math.floor( Math.random() * docs.length );
+                var random = parabola(docs.length);
                 select_conf(docs[random].name,docs[random].period,docs[random].date,docs[random].remarks);
             }
             else{
-                db.find({active:1}).sort({date: -1}).exec(function(err, docsum){
+                db.find({active:1}).sort({date: 1}).exec(function(err, docsum){
                     if(docsum.length>0){
-                        var random = Math.floor( Math.random() * docsum.length );
+                        //var random = Math.floor( Math.random() * docsum.length );
+                        var random = parabola(docsum.length);
                         select_conf(docsum[random].name,docsum[random].period,docsum[random].date,docsum[random].remarks);
                     }
                     else{
