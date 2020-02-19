@@ -32,7 +32,8 @@ $(function (){
                 showCancelButton: true,
                 confirmButtonText: 'Yes'
             }).then((result) => {
-                if (result.value) {
+                ipcRenderer.send("test", typeof(result.value)); 
+                if (typeof(result.value)!=="undefined") {
                     db.update({name:c_name, date:c_date, period:c_period}, {$set: {date: moment().format('YYYY-MM-DD'), remarks: result.value}}, function(err, newDoc){
                         if (err !== null){
                             Swal.fire({
