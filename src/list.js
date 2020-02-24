@@ -165,7 +165,7 @@ $(function (){
             Swal.fire({
                 title: '確認',
                 text: '選択したデータを本当に削除しますか？',
-                icon: 'warming',
+                icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes'
             }).then((result) => {
