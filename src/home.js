@@ -13,7 +13,7 @@ $(function (){
         // "hello" という文字列と123という整数を送信
         //ipcRenderer.send("test", app.getAppPath()+'/src/data/member.db'); 
 
-        //選ばれた候補者をaccept処理する
+        //選ばれた候補者を提示→OKならaccept処理
         function select_conf(c_name,c_period,c_date,c_remarks){
             var title = c_name + "さんが選ばれました"
             var dialog = c_period + "期" + c_name + "さん(最終割り振り: " + c_date + ")に仕事を割り振りますか？";
@@ -27,7 +27,7 @@ $(function (){
                 showCancelButton: true,
                 confirmButtonText: 'Yes'
             }).then((result) => {
-                if (typeof(result.value)!=="undefined") {
+                if (result.dismiss!=="cancel") {
                     db.update({name:c_name, date:c_date, period:c_period}, {$set: {date: moment().format('YYYY-MM-DD'), remarks: result.value}}, function(err, newDoc){
                         if (err !== null){
                             Swal.fire({

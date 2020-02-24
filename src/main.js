@@ -65,7 +65,7 @@ app.on('ready', function(){
   }});
   mainWindow.loadURL('file://' + __dirname + '/templates/home.html');
 
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   //メニューバー設置
   const menu = Menu.buildFromTemplate(template);
