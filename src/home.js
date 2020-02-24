@@ -51,6 +51,12 @@ $(function (){
                         }
                     });
                 }
+                else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: '入力された備考欄の取得に失敗しました',
+                    })
+                }
             })
         }
 
