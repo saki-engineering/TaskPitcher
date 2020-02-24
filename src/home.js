@@ -1,17 +1,21 @@
 $(function (){
     // IPC通信を行うために、レンダラープロセス側では ipcRenderer というモジュールを require する
-    const { ipcRenderer } = require("electron");
+    //const { ipcRenderer } = require("electron");
+    const ipcRenderer = window.ipcRenderer;
 
-    const { app } = require('electron').remote
+    //const { app } = require('electron').remote
+    const app = window.app;
 
     //NeDBの設定
-    var Datastore = require('nedb');
+    //var Datastore = require('nedb');
+    var Datastore = window.Datastore;
     var db = new Datastore({ 
         filename: app.getPath('userData')+'/member.db',
         autoload: true
     });
 
-    const moment = require('moment')
+    //const moment = require('moment')
+    const moment = window.moment;
 
     //候補者をランダムに表示→accpet処理
     $("#btn-search").click(function() {

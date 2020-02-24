@@ -67,9 +67,13 @@ let template = [{
 app.on('ready', function(){
   // メイン画面の表示。ウィンドウの幅、高さを指定できる
   mainWindow = new BrowserWindow({width: 800, height: 600, webPreferences: {
-    nodeIntegration: true
+    nodeIntegration: false,
+    contextIsolation: false,
+    preload: __dirname + '/preload.js'
   }});
   mainWindow.loadURL('file://' + __dirname + '/templates/home.html');
+
+  mainWindow.webContents.openDevTools()
 
   //メニューバー設置
   const menu = Menu.buildFromTemplate(template);

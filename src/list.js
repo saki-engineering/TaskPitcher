@@ -1,22 +1,30 @@
 $(function (){
     // IPC通信を行うために、レンダラープロセス側では ipcRenderer というモジュールを require する
-    const { ipcRenderer } = require("electron");
+    //const { ipcRenderer } = require("electron");
+    const ipcRenderer = window.ipcRenderer;
 
-    const { app } = require('electron').remote
+    //const { app } = require('electron').remote
+    const app = window.app;
 
-    var Datastore = require('nedb');
+    //var Datastore = require('nedb');
+    var Datastore = window.Datastore;
     var db = new Datastore({ 
         filename: app.getPath('userData')+'/member.db',
         autoload: true
     });
 
-    const moment = require('moment')
+    //const moment = require('moment')
+    const moment = window.moment;
 
-    var Tabulator = require('tabulator-tables');
+    //var Tabulator = require('tabulator-tables');
+    var Tabulator = window.Tabulator;
 
-    var stringify = require('csv-stringify');
-    var fs = require('fs');
-    const { dialog } = require('electron').remote
+    //var stringify = require('csv-stringify');
+    var stringify = window.stringify;
+    //var fs = require('fs');
+    var fs = window.fs;
+    //const { dialog } = require('electron').remote
+    const dialog = window.dialog;
 
     db.find({}, function(err, docs){
         //editorの設定
