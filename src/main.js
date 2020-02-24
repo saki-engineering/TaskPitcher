@@ -1,21 +1,13 @@
 'use strict';
 
-// Electronのモジュール
 const electron = require("electron");
-
-// アプリケーションをコントロールするモジュール
 const app = electron.app;
-
-// ウィンドウを作成するモジュール
 const BrowserWindow = electron.BrowserWindow;
-
-//アプリケーションメニュー
 const Menu = electron.Menu
+const open = require('open');
 
 // メインウィンドウはGCされないようにグローバル宣言
 let mainWindow;
-
-const open = require('open');
 
 //メニューバー内容
 let template = [{
@@ -73,7 +65,7 @@ app.on('ready', function(){
   }});
   mainWindow.loadURL('file://' + __dirname + '/templates/home.html');
 
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   //メニューバー設置
   const menu = Menu.buildFromTemplate(template);

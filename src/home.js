@@ -1,20 +1,11 @@
 $(function (){
-    // IPC通信を行うために、レンダラープロセス側では ipcRenderer というモジュールを require する
-    //const { ipcRenderer } = require("electron");
     const ipcRenderer = window.ipcRenderer;
-
-    //const { app } = require('electron').remote
     const app = window.app;
-
-    //NeDBの設定
-    //var Datastore = require('nedb');
-    var Datastore = window.Datastore;
-    var db = new Datastore({ 
+    const Datastore = window.Datastore;
+    const db = new Datastore({ 
         filename: app.getPath('userData')+'/member.db',
         autoload: true
     });
-
-    //const moment = require('moment')
     const moment = window.moment;
 
     //候補者をランダムに表示→accpet処理
@@ -36,7 +27,6 @@ $(function (){
                 showCancelButton: true,
                 confirmButtonText: 'Yes'
             }).then((result) => {
-                ipcRenderer.send("test", typeof(result.value)); 
                 if (typeof(result.value)!=="undefined") {
                     db.update({name:c_name, date:c_date, period:c_period}, {$set: {date: moment().format('YYYY-MM-DD'), remarks: result.value}}, function(err, newDoc){
                         if (err !== null){

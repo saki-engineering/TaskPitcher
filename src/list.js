@@ -1,29 +1,15 @@
 $(function (){
-    // IPC通信を行うために、レンダラープロセス側では ipcRenderer というモジュールを require する
-    //const { ipcRenderer } = require("electron");
     const ipcRenderer = window.ipcRenderer;
-
-    //const { app } = require('electron').remote
     const app = window.app;
-
-    //var Datastore = require('nedb');
-    var Datastore = window.Datastore;
-    var db = new Datastore({ 
+    const Datastore = window.Datastore;
+    const db = new Datastore({ 
         filename: app.getPath('userData')+'/member.db',
         autoload: true
     });
-
-    //const moment = require('moment')
     const moment = window.moment;
-
-    //var Tabulator = require('tabulator-tables');
-    var Tabulator = window.Tabulator;
-
-    //var stringify = require('csv-stringify');
-    var stringify = window.stringify;
-    //var fs = require('fs');
-    var fs = window.fs;
-    //const { dialog } = require('electron').remote
+    const Tabulator = window.Tabulator;
+    const stringify = window.stringify;
+    const fs = window.fs;
     const dialog = window.dialog;
 
     db.find({}, function(err, docs){
@@ -43,7 +29,6 @@ $(function (){
             });
 
             function successFunc(){
-                //var field = cell.getField();
                 db.update({_id:cell.getData()._id}, {$set: {name: editor.value}});
                 success(editor.value);
             }
@@ -98,7 +83,6 @@ $(function (){
             });
 
             function successFunc(){
-                //ipcRenderer.send("test", moment(editor.value).isValid());
                 if(moment(editor.value).isValid()){
                     db.update({_id:cell.getData()._id}, {$set: {date: moment(editor.value).format('YYYY-MM-DD')}});
                     success(moment(editor.value).format('YYYY-MM-DD'));
@@ -129,7 +113,6 @@ $(function (){
             });
 
             function successFunc(){
-                //var field = cell.getField();
                 db.update({_id:cell.getData()._id}, {$set: {remarks: editor.value}});
                 success(editor.value);
             }
@@ -147,8 +130,6 @@ $(function (){
             else editor.checked = false;
 
             function successFunc(){
-                //var field = cell.getField();
-                //db.update({_id:cell.getData()._id}, {$set: {remarks: editor.value}});
                 if(editor.checked){
                     db.update({_id:cell.getData()._id}, {$set: {active: 1}});
                     success(1);
