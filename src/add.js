@@ -24,8 +24,7 @@ $(function (){
         if(m_name == ""){
             Swal.fire({
                 icon: 'warning',
-                title: 'WARNING',
-                text: '追加するメンバーの名前を入力してください',
+                title: '追加するメンバーの名前を入力してください',
             });
         }
         else{
@@ -103,8 +102,7 @@ $(function (){
                 if(data.length==0) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'NO DATA',
-                        text: 'csvファイル内にデータが存在しません',
+                        title: 'csvファイル内にデータが存在しません',
                     });
                 }
                 else if('date' in data[0]){

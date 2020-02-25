@@ -269,7 +269,7 @@ $(function (){
             }
             else if(input.length == 0){
                 Swal.fire({
-                    icon: 'info',
+                    icon: 'warning',
                     title: '表にデータがありません',
                 });
             }
