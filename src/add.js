@@ -82,8 +82,10 @@ $(function (){
     $("#btn-upload").click(function() {
        fs.createReadStream(path[0],'utf-8')
         .pipe(csv({
-            columns: true
-        }, function (err, data) {
+            trim: true,
+            columns: true,
+            bom: true
+        }, function (err, data) {            
             //csvのパースにエラーがでた
             if (err != null){
                 Swal.fire({
@@ -95,6 +97,7 @@ $(function (){
             else{
                 data = JSON.stringify(data);
                 data = JSON.parse(data);
+                //console.log(Object.keys(data[0]));
 
                 var fail = [];
 
