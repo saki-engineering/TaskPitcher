@@ -235,22 +235,6 @@ $(function (){
 
     //DBの中身をcsvに出力するボタン
     $("#output-csv").click(function(){
-        //書き出すデータの作成
-        var input = [];
-        var output_err;
-        db.find({}, function(err, docs){
-            output_err = err;
-            for(var i=0;i<docs.length;i++){
-                var obj = {
-                    id: docs[i]._id,
-                    name: docs[i].name,
-                    date: docs[i].date,
-                    period: docs[i].period,
-                    remarks: docs[i].remarks
-                };
-                input.push(obj);
-            }
-        });
         //ファイル選択ダイアログの表示
         var saved_filepath = dialog.showSaveDialogSync(null, {
             title: '保存',
@@ -259,51 +243,64 @@ $(function (){
                 {name: 'CSVファイル', extensions: ['csv']},
             ]
         });
-        if(saved_filepath){
-            if(output_err){
-                Swal.fire({
-                    icon: 'error',
-                    title: '表データ取得に失敗しました',
-                    text: output_err
-                });
+        //書き出すデータの作成
+        db.find({}, function(w_err, docs){
+            var input = [];
+            for(var i=0;i<docs.length;i++){
+                var obj = {
+                    name: docs[i].name,
+                    date: docs[i].date,
+                    period: docs[i].period,
+                    remarks: docs[i].remarks
+                };
+                input.push(obj);
             }
-            else if(input.length == 0){
-                Swal.fire({
-                    icon: 'warning',
-                    title: '表にデータがありません',
-                });
+            if(saved_filepath){
+                if(w_err){
+                    Swal.fire({
+                        icon: 'error',
+                        title: '表データ取得に失敗しました',
+                        text: output_err
+                    });
+                }
+                else if(input.length == 0){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '表にデータがありません',
+                    });
+                }
+                else{
+                    stringify(input,{header: true},(err, output) => {
+                        if(err){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'csvファイルの生成に失敗しました',
+                                text: err
+                            });
+                        }
+                        else{
+                            fs.writeFile(saved_filepath, output , (err) => {
+                                if(err){
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'csvファイルの書き出しに失敗しました',
+                                        text: err
+                                    });
+                                }
+                                // 書き出しに成功した場合
+                                else{
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'SUCCESS!',
+                                        text: 'csvファイルの書き出しに成功しました',
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
             }
-            else{
-                stringify(input,{header: true},(err, output) => {
-                    if(err){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'csvファイルの生成に失敗しました',
-                            text: err
-                        });
-                    }
-                    else{
-                        fs.writeFile(saved_filepath, output , (err) => {
-                            if(err){
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'csvファイルの書き出しに失敗しました',
-                                    text: err
-                                });
-                            }
-                            // 書き出しに成功した場合
-                            else{
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'SUCCESS!',
-                                    text: 'csvファイルの書き出しに成功しました',
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-        }
+        });
     });    
 
 });
