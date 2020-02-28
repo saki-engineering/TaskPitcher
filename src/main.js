@@ -55,8 +55,7 @@ let template = [{
   }]
 }]
 
-// Electronの初期化完了後に実行
-app.on('ready', function(){
+function createWindow (){
   // メイン画面の表示。ウィンドウの幅、高さを指定できる
   mainWindow = new BrowserWindow({width: 800, height: 600, webPreferences: {
     nodeIntegration: false,
@@ -66,21 +65,29 @@ app.on('ready', function(){
   mainWindow.loadURL('file://' + __dirname + '/templates/home.html');
 
   //mainWindow.webContents.openDevTools()
+}
+
+app.on('ready', function(){
+  createWindow();
 
   //メニューバー設置
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
+});
 
-  // ウィンドウが閉じられたらアプリも終了
-  mainWindow.on('closed', function(){
+app.on('window-all-closed', () => {
+  // macOSでは、ユーザが Cmd + Q で明示的に終了するまで、
+  // アプリケーションとそのメニューバーは有効なままにするのが一般的です。
+  if (process.platform !== 'darwin') {
     mainWindow = null;
-    app.quit();
-  });
-});
+    app.quit()
+  }
+})
 
-// メインプロセス側では ipcMain モジュール
-const { ipcMain } = require("electron");
-
-ipcMain.on("test", (event, args) => {
-  console.log("test:", args); 
-});
+app.on('activate', () => {
+  // macOSでは、ユーザがドックアイコンをクリックしたとき、
+  // そのアプリのウインドウが無かったら再作成するのが一般的です。
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow()
+  }
+})
