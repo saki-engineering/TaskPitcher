@@ -10,6 +10,16 @@ $(function (){
     const fs = window.fs;
     const csv = window.csv;
 
+    //一人ずつaddフォームの送信ボタンを、nameフィールド(必須項目)が入力されている時だけactivateする
+    $("#form-name").change(function(){
+        if($("#form-name").val()===""){
+            $("#btn-input").prop("disabled", true);
+        }
+        else{
+            $("#btn-input").prop("disabled", false);
+        }
+    });
+
     //一人ずつ追加するフォームの挙動
     $("#btn-input").click(function() {
         var m_name = $("#form-name").val();
