@@ -1,9 +1,6 @@
 'use strict';
 
-const electron = require("electron");
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-const Menu = electron.Menu
+const {app, BrowserWindow, Menu} = require("electron");
 const open = require('open');
 
 // メインウィンドウはGCされないようにグローバル宣言
