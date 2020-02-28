@@ -1,5 +1,4 @@
 $(function (){
-    const ipcRenderer = window.ipcRenderer;
     const app = window.app;
     const Datastore = window.Datastore;
     const db = new Datastore({ 
@@ -13,9 +12,6 @@ $(function (){
 
     //一人ずつ追加するフォームの挙動
     $("#btn-input").click(function() {
-        // "hello" という文字列と123という整数を送信
-        //ipcRenderer.send("test", 1,2);
-
         var m_name = $("#form-name").val();
         var m_date = moment().subtract(1,'M').format('YYYY-MM-DD');
         var m_period = $("#form-period").val();
@@ -97,8 +93,6 @@ $(function (){
             else{
                 data = JSON.stringify(data);
                 data = JSON.parse(data);
-                //console.log(Object.keys(data[0]));
-
                 var fail = [];
 
                 //csvファイルにデータがない
@@ -108,26 +102,24 @@ $(function (){
                         title: 'csvファイル内にデータが存在しません',
                     });
                 }
-                else if('date' in data[0]){
+                else{
                     for(var i=0;i<data.length;i++){
                         //csvのdateプロパティが空なら、デフォルト値を設定する
                         var c_date;
-                        if(data[i].date == ""){
+                        if(typeof(data[i].date) === "undefined" || moment(data[0].date).isValid()==false){
                             c_date = moment().subtract(1,'M').format('YYYY-MM-DD');
                         }
                         else c_date = moment(data[i].date).format('YYYY-MM-DD');
 
                         var doc = {
-                            name: data[i].name,
+                            name: (data[i].name ? data[i].name : ""),
                             date: c_date,
-                            period: data[i].period,
-                            remarks: data[i].remarks,
+                            period: (data[i].period ? data[i].period : ""),
+                            remarks: (data[i].remarks ? data[i].remarks : ""),
                             active: 1
                         };
                         db.insert(doc,function(err, newDoc){
-                            if (err !== null) {
-                                fail.push(i);
-                            }
+                            if (err !== null) fail.push(i);
                         });
                     }
                     if(fail.length==0){
@@ -144,14 +136,6 @@ $(function (){
                             text: '失敗したデータ→' + fail.join(','),
                         });
                     }
-                }
-                //jsonにdateプロパティがない
-                else{
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'csvファイルの形式が違います',
-                        text: 'csvファイルにdateプロパティを用意してください',
-                    });
                 }
             }
 
