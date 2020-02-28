@@ -1,5 +1,4 @@
 $(function (){
-    const ipcRenderer = window.ipcRenderer;
     const app = window.app;
     const Datastore = window.Datastore;
     const db = new Datastore({ 
@@ -203,16 +202,16 @@ $(function (){
                 }
                 else{
                     var selected_data = table.getSelectedData();
-                    var fail = [];
+                    var delete_fail = [];
 
                     for(var i=0;i<selected_data.length;i++){
                         db.remove({_id:selected_data[i]._id}, function(err, newDoc){
                             if (err !== null) {
-                                fail.push(i);
+                                delete_fail.push(i);
                             }
                         });
                     }
-                    if(fail.length==0){
+                    if(delete_fail.length==0){
                         Swal.fire({
                             icon: 'success',
                             title: 'SUCCESS!',
@@ -224,7 +223,7 @@ $(function (){
                         Swal.fire({
                             icon: 'info',
                             title: '一部データの削除に失敗しました',
-                            text: '失敗したデータ→' + fail.join(','),
+                            text: '失敗したデータ→' + delete_fail.join(','),
                             onAfterClose: () => location.reload(),
                         });
                     }

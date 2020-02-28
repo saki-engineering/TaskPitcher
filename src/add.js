@@ -55,28 +55,28 @@ $(function (){
     });
 
     //アップロードするcsvファイルのパスを取得+アップロードボタンを有効化
-    var path = "";
+    var csv_path = "";
     $("#btn-fileslt").click(function() {
-        path = dialog.showOpenDialogSync({
+        csv_path = dialog.showOpenDialogSync({
             filters: [
                 {name: 'CSV', extensions: ['csv',]}, 
             ],
         });
-        if(path){
-            $("#form-file").val(path);
+        if(csv_path){
+            $("#form-file").val(csv_path);
             $("#btn-upload").prop("disabled", false);
         }
     });
 
     //アップしたcsvファイルを処理
     $("#btn-filecancel").click(function() {
-        path = "";
+        csv_path = "";
         $("#form-file").val("select file...");
         $("#btn-upload").prop("disabled", true);
     });
 
     $("#btn-upload").click(function() {
-       fs.createReadStream(path[0],'utf-8')
+       fs.createReadStream(csv_path[0],'utf-8')
         .pipe(csv({
             trim: true,
             columns: true,
@@ -93,7 +93,7 @@ $(function (){
             else{
                 data = JSON.stringify(data);
                 data = JSON.parse(data);
-                var fail = [];
+                var insert_fail = [];
 
                 //csvファイルにデータがない
                 if(data.length==0) {
@@ -119,10 +119,10 @@ $(function (){
                             active: 1
                         };
                         db.insert(doc,function(err, newDoc){
-                            if (err !== null) fail.push(i);
+                            if (err !== null) insert_fail.push(i);
                         });
                     }
-                    if(fail.length==0){
+                    if(insert_fail.length==0){
                         Swal.fire({
                             icon: 'success',
                             title: 'SUCCESS!',
@@ -133,14 +133,14 @@ $(function (){
                         Swal.fire({
                             icon: 'info',
                             title: '一部データの挿入に失敗しました',
-                            text: '失敗したデータ→' + fail.join(','),
+                            text: '失敗したデータ→' + insert_fail.join(','),
                         });
                     }
                 }
             }
 
             //全ての場合に共通した終了処理
-            path = "";
+            csv_path = "";
             $("#form-file").val("select file...");
             $("#btn-upload").prop("disabled", true);
         }))

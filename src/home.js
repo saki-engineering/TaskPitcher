@@ -1,5 +1,4 @@
 $(function (){
-    const ipcRenderer = window.ipcRenderer;
     const app = window.app;
     const Datastore = window.Datastore;
     const db = new Datastore({ 
@@ -10,9 +9,6 @@ $(function (){
 
     //候補者をランダムに表示→accpet処理
     $("#btn-search").click(function() {
-        // "hello" という文字列と123という整数を送信
-        //ipcRenderer.send("test", app.getAppPath()+'/src/data/member.db'); 
-
         //選ばれた候補者を提示→OKならaccept処理
         function select_conf(c_name,c_period,c_date,c_remarks){
             var title = c_name + "さんが選ばれました"
