@@ -13,7 +13,7 @@ let mainWindow;
 let template = [{
   label: 'TaskPitcher',
   submenu: [{
-    label: 'ReadMe',
+    label: 'ReadMeを表示',
     click: function(){
       open('https://github.com/saki-engineering/TaskPitcher');
     }
