@@ -60,9 +60,10 @@ activeフィールドに関しては、表のヘッダーにあるチェック�
 
 ### edit member data
 メンバーの表セルをクリックすることで、データを編集することができます。
-<img width="802" alt="edit now" src="https://user-images.githubusercontent.com/44340370/74903521-819a9400-53ec-11ea-80bd-b9ea5463185d.png">
+<img width="799" alt="focus" src="https://user-images.githubusercontent.com/44340370/75601893-2ad73d80-5b03-11ea-82ab-a67611a6c99e.png">
+<img width="801" alt="focus_update" src="https://user-images.githubusercontent.com/44340370/75601899-375b9600-5b03-11ea-9cc3-3cec38eb4a71.png">
 編集後、セルからフォーカスを外すことで、編集されたデータで確定・更新されます。
-<img width="800" alt="edit after" src="https://user-images.githubusercontent.com/44340370/74903453-4ef09b80-53ec-11ea-9161-320d40b8f831.png">
+<img width="800" alt="updated" src="https://user-images.githubusercontent.com/44340370/75601900-40e4fe00-5b03-11ea-84e3-332b95a7d731.png">
 Name・Period・Last-date・Remarks・Activeの全てのフィールドに関してデータを編集することができます。
 
 ### sort member data
@@ -78,13 +79,13 @@ Output CSVボタンを押すことで、出力されるファイルの名前と�
 
 ### delete_member button
 表の中で削除したいデータ列のチェックボックスを選択します。
-<img width="800" alt="check" src="https://user-images.githubusercontent.com/44340370/74905992-04bee880-53f3-11ea-9cdc-185d6eb04ebe.png">
+<img width="804" alt="check" src="https://user-images.githubusercontent.com/44340370/75601942-ba7cec00-5b03-11ea-8dac-137800178e23.png">
 表中にある全データをチェックしたい場合は、ヘッダーのチェックボックスを入れることで、全データが選択されます。
-<img width="801" alt="all check" src="https://user-images.githubusercontent.com/44340370/74906029-215b2080-53f3-11ea-800d-07fdfa040ad2.png">
+<img width="801" alt="all check" src="https://user-images.githubusercontent.com/44340370/75601949-c9fc3500-5b03-11ea-8889-aa45adb6fbb0.png">
 削除したいデータが選択された状態で、delete delected datasを押すと、確認ポップアップが表示されます。
-<img width="800" alt="delete warning" src="https://user-images.githubusercontent.com/44340370/74906081-494a8400-53f3-11ea-8b49-45bf4976febf.png">
+<img width="801" alt="delete warning" src="https://user-images.githubusercontent.com/44340370/75601954-d2ed0680-5b03-11ea-8b43-633b6eda2e51.png">
 Yesを押すことで、選択したデータが削除されます。
-<img width="799" alt="delete success" src="https://user-images.githubusercontent.com/44340370/74906102-5a939080-53f3-11ea-9603-755b109fd1bf.png">
+<img width="802" alt="delete success" src="https://user-images.githubusercontent.com/44340370/75601958-de403200-5b03-11ea-92e8-c291a3f08c06.png">
 
 ## Add Member
 Add Memberでは、メンバーを新しく登録することができます。
