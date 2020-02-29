@@ -104,3 +104,16 @@ Add Memberでは、メンバーを新しく登録することができます。
 <img width="797" alt="selected csv" src="https://user-images.githubusercontent.com/44340370/74814901-94a15b80-533b-11ea-8533-ea33fd62bead.png">
 アップロードしてデータを追加を押し、データ追加が成功したら、確認ポップアップが表示されます。
 <img width="797" alt="csv success" src="https://user-images.githubusercontent.com/44340370/74815187-21e4b000-533c-11ea-8cd9-4a27e61d7ed0.png">
+
+### csv format
+データをアップロードするために必要なcsvファイル形式は以下の通りです。
+
+´´´
+name,period,date,remarks
+A,1,2020/1/19,add test
+B,1,2020/1/9,
+C,1,2019/11/1,
+AA,2,2019/12/22,
+BB,2,2020/2/11,
+CC,2,2019/10/11,
+´´´
