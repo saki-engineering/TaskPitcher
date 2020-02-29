@@ -10,9 +10,9 @@ TaskPitcherは、名簿の中から仕事を振る人をランダム抽出する
 # Documentation
 ## Home
 Homeでは、実際にメンバーの中から仕事を振ることができます。
-<img width="801" alt="Home画像" src="https://user-images.githubusercontent.com/44340370/74804041-5d728080-5322-11ea-9304-87f627eaa928.png">
+<img width="801" alt="Home画像" src="https://user-images.githubusercontent.com/44340370/74804041-5d728080-5322-11ea-9304-87f627eaa928.png"><br>
 中央のstartボタンを押すと、候補者が表示されます。
-<img width="800" alt="suggest member" src="https://user-images.githubusercontent.com/44340370/74902715-38e1db80-53ea-11ea-97c9-2948218b7138.png">
+<img width="800" alt="suggest member" src="https://user-images.githubusercontent.com/44340370/74902715-38e1db80-53ea-11ea-97c9-2948218b7138.png"><br>
 cancelボタンを押すと、最初のHome画面に戻ります。<br>
 Yesを押すと、選ばれた候補者のLast-dateとremarksが更新されます。
 <img width="801" alt="suggest success" src="https://user-images.githubusercontent.com/44340370/74902758-5616aa00-53ea-11ea-9612-ae44cab6d5ab.png">
@@ -61,9 +61,9 @@ activeフィールドに関しては、表のヘッダーにあるチェック�
 ### edit member data
 メンバーの表セルをクリックすることで、データを編集することができます。
 <img width="799" alt="focus" src="https://user-images.githubusercontent.com/44340370/75601893-2ad73d80-5b03-11ea-82ab-a67611a6c99e.png">
-<img width="801" alt="focus_update" src="https://user-images.githubusercontent.com/44340370/75601899-375b9600-5b03-11ea-9cc3-3cec38eb4a71.png">
+<img width="801" alt="focus_update" src="https://user-images.githubusercontent.com/44340370/75601899-375b9600-5b03-11ea-9cc3-3cec38eb4a71.png"><br>
 編集後、セルからフォーカスを外すことで、編集されたデータで確定・更新されます。
-<img width="800" alt="updated" src="https://user-images.githubusercontent.com/44340370/75601900-40e4fe00-5b03-11ea-84e3-332b95a7d731.png">
+<img width="800" alt="updated" src="https://user-images.githubusercontent.com/44340370/75601900-40e4fe00-5b03-11ea-84e3-332b95a7d731.png"><br>
 Name・Period・Last-date・Remarks・Activeの全てのフィールドに関してデータを編集することができます。
 
 ### sort member data
@@ -79,11 +79,11 @@ Output CSVボタンを押すことで、出力されるファイルの名前と�
 
 ### delete_member button
 表の中で削除したいデータ列のチェックボックスを選択します。
-<img width="804" alt="check" src="https://user-images.githubusercontent.com/44340370/75601942-ba7cec00-5b03-11ea-8dac-137800178e23.png">
+<img width="804" alt="check" src="https://user-images.githubusercontent.com/44340370/75601942-ba7cec00-5b03-11ea-8dac-137800178e23.png"><br>
 表中にある全データをチェックしたい場合は、ヘッダーのチェックボックスを入れることで、全データが選択されます。
-<img width="801" alt="all check" src="https://user-images.githubusercontent.com/44340370/75601949-c9fc3500-5b03-11ea-8889-aa45adb6fbb0.png">
+<img width="801" alt="all check" src="https://user-images.githubusercontent.com/44340370/75601949-c9fc3500-5b03-11ea-8889-aa45adb6fbb0.png"><br>
 削除したいデータが選択された状態で、delete delected datasを押すと、確認ポップアップが表示されます。
-<img width="801" alt="delete warning" src="https://user-images.githubusercontent.com/44340370/75601954-d2ed0680-5b03-11ea-8b43-633b6eda2e51.png">
+<img width="801" alt="delete warning" src="https://user-images.githubusercontent.com/44340370/75601954-d2ed0680-5b03-11ea-8b43-633b6eda2e51.png"><br>
 Yesを押すことで、選択したデータが削除されます。
 <img width="802" alt="delete success" src="https://user-images.githubusercontent.com/44340370/75601958-de403200-5b03-11ea-92e8-c291a3f08c06.png">
 
@@ -93,15 +93,15 @@ Add Memberでは、メンバーを新しく登録することができます。
 
 ### add_member form
 メンバーを一人ずつ追加したい場合は、フォームに名前・期・備考事項を記入して、追加ボタンを押します。
-<img width="799" alt="add member form" src="https://user-images.githubusercontent.com/44340370/74812452-e1cefe80-5336-11ea-8829-7e43b7f600c2.png">
+<img width="799" alt="add member form" src="https://user-images.githubusercontent.com/44340370/74812452-e1cefe80-5336-11ea-8829-7e43b7f600c2.png"><br>
 すると、データの追加に成功した確認ポップアップが表示されます。
 <img width="798" alt="success to add member" src="https://user-images.githubusercontent.com/44340370/74812593-1cd13200-5337-11ea-9eb5-b7144ea75b74.png">
 
 ### csv file upload
 メンバーをまとめて追加したい場合は、所定の形式のcsvファイルを以下のフォームからアップロードします。
-<img width="800" alt="select csv" src="https://user-images.githubusercontent.com/44340370/74814771-5c018200-533b-11ea-9227-a9ff21bf8c6c.png">
+<img width="800" alt="select csv" src="https://user-images.githubusercontent.com/44340370/74814771-5c018200-533b-11ea-9227-a9ff21bf8c6c.png"><br>
 ファイル選択ボタンを押して、アップロードするcsvファイルを選択したら、ファイル名がフォームに表示されます。この状態でアップロードしてデータを追加ボタンがactivateされます。
-<img width="797" alt="selected csv" src="https://user-images.githubusercontent.com/44340370/74814901-94a15b80-533b-11ea-8533-ea33fd62bead.png">
+<img width="797" alt="selected csv" src="https://user-images.githubusercontent.com/44340370/74814901-94a15b80-533b-11ea-8533-ea33fd62bead.png"><br>
 アップロードしてデータを追加を押し、データ追加が成功したら、確認ポップアップが表示されます。
 <img width="797" alt="csv success" src="https://user-images.githubusercontent.com/44340370/74815187-21e4b000-533c-11ea-8cd9-4a27e61d7ed0.png">
 
