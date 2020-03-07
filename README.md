@@ -4,8 +4,8 @@ TaskPitcherは、名簿の中から仕事を振る人をランダム抽出する
 # Download
 |Release Version|Release Date|Operating System||
 |:--|:--|:--|:--|
-|TaskPitcher version 1.0.0|2020.3.8|Mac OS X|[Coming Soon...]()|
-|||Windows|[Coming Soon...]()|
+|TaskPitcher version 1.0.0|2020.3.8|Mac OS X|[Download Link](https://saki-engineer-taskpitcher.s3-ap-northeast-1.amazonaws.com/mac/TaskPitcher-1.0.0.dmg)|
+|||Windows|[Download Link](https://saki-engineer-taskpitcher.s3-ap-northeast-1.amazonaws.com/win/TaskPitcher+Setup+1.0.0.exe)|
 
 # Documentation
 ## Home
